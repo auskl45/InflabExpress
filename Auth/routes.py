@@ -92,4 +92,4 @@ def register_post():
 def logout():
     #Cerramos la sessión
     logout_user()
-    return redirect(url_for('productos.home'))
+    return redirect(url_for('productos.index'))

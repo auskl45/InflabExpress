@@ -13,8 +13,8 @@ app=Flask(__name__)
 app.config.from_object(DevelopmentConfig)
 #Definimos la ruta a la página principal
 @productos.route('/')
-def home():
-    return render_template('home.html',current_user=current_user)
+def index():
+    return render_template('index.html',current_user=current_user)
 @auth.route('/login')
 def login():
     return render_template('/security/login.html',current_user=current_user)

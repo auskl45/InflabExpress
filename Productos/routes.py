@@ -29,7 +29,7 @@ def profile():
 
     else:
         admin=False
-        return render_template('profile.html',name=current_user.name,admin=admin)    
+        return render_template('user/profile.html',name=current_user.name,admin=admin)    
 
 @productos.route('/productosMenu')
 @login_required
