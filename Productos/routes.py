@@ -36,7 +36,7 @@ def profile():
 @roles_required('user')
 def productosMenu():
         productosAll=Producto.query.all()
-        return render_template('productos.html',productos=productosAll)
+        return render_template('user/productos.html',productos=productosAll)
 
 @productos.route("/agregarProducto",methods=['GET','POST'])
 def agregarProducto():
