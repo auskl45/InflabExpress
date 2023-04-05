@@ -1,0 +1,37 @@
+2023-04-05 10:07:41,993 - WARNING - El usuario y/o la contraseña son incorrectos
+2023-04-05 10:07:51,184 - WARNING - El usuario y/o la contraseña son incorrectos
+2023-04-05 10:08:25,953 - WARNING - El usuario y/o la contraseña son incorrectos
+2023-04-05 10:09:36,242 - WARNING - El usuario y/o la contraseña son incorrectos
+2023-04-05 10:10:00,405 - WARNING - Error campos vacios
+2023-04-05 10:10:43,648 - WARNING - El usuario y/o la contraseña son incorrectos
+2023-04-05 10:20:45,772 - WARNING - El usuario y/o la contraseña son incorrectos
+2023-04-05 10:24:29,712 - WARNING - El correo electrónico ya existe
+2023-04-05 10:27:20,219 - WARNING - El correo electrónico ya existe
+2023-04-05 10:27:33,867 - WARNING - El correo electrónico ya existe
+2023-04-05 10:31:38,446 - WARNING - El correo electrónico ya existe
+2023-04-05 10:37:39,538 - WARNING - El usuario y/o la contraseña son incorrectos
+2023-04-05 11:30:46,280 - INFO - Producto agregado porJorge Antonio con id 1
+2023-04-05 11:30:46,284 - ERROR - Could not build url for endpoint 'main.profile'. Did you mean 'productos.profile' instead? Error al agregar producto por Jorge Antonio con id 1
+2023-04-05 11:31:51,054 - INFO - Producto agregado porJorge Antonio con id 1
+2023-04-05 11:31:51,054 - ERROR - Could not build url for endpoint 'main.profile'. Did you mean 'productos.profile' instead? Error al agregar producto por Jorge Antonio con id 1
+2023-04-05 11:33:29,804 - INFO - Producto agregado porJorge Antonio con id 1
+2023-04-05 11:33:29,804 - ERROR - Could not build url for endpoint 'main.profile'. Did you mean 'productos.profile' instead? Error al agregar producto por Jorge Antonio con id 1
+2023-04-05 11:35:43,388 - INFO - Producto agregado porJorge Antonio con id 1
+2023-04-05 11:35:43,388 - ERROR - Could not build url for endpoint 'main.profile'. Did you mean 'productos.profile' instead? Error al agregar producto por Jorge Antonio con id 1
+2023-04-05 11:37:30,234 - INFO - Producto agregado con id 1
+2023-04-05 11:37:30,244 - ERROR - Could not build url for endpoint 'main.profile'. Did you mean 'productos.profile' instead? Error al agregar producto por Jorge Antonio con id 1
+2023-04-05 11:38:40,243 - INFO - Producto agregado porJorge Antonio con id 1
+2023-04-05 11:38:40,243 - ERROR - Could not build url for endpoint 'main.profile'. Did you mean 'productos.profile' instead? Error al agregar producto por Jorge Antonio con id 1
+2023-04-05 11:39:06,493 - INFO - Producto agregado porJorge Antonio con id 1
+2023-04-05 11:39:06,493 - ERROR - Could not build url for endpoint 'main.profile'. Did you mean 'productos.profile' instead? Error al agregar producto por Jorge Antonio con id 1
+2023-04-05 11:40:12,746 - INFO - Producto agregado porJorge Antonio con id 1
+2023-04-05 11:43:31,141 - INFO - Producto eliminado por Jorge Antonio con id 1
+2023-04-05 11:43:57,360 - INFO - Producto eliminado por Jorge Antonio con id 1
+2023-04-05 11:43:58,363 - INFO - Producto eliminado por Jorge Antonio con id 1
+2023-04-05 11:43:59,713 - INFO - Producto eliminado por Jorge Antonio con id 1
+2023-04-05 11:44:00,596 - INFO - Producto eliminado por Jorge Antonio con id 1
+2023-04-05 11:44:01,186 - INFO - Producto eliminado por Jorge Antonio con id 1
+2023-04-05 11:44:01,723 - INFO - Producto eliminado por Jorge Antonio con id 1
+2023-04-05 11:44:02,806 - INFO - Producto eliminado por Jorge Antonio con id 1
+2023-04-05 11:44:03,364 - INFO - Producto eliminado por Jorge Antonio con id 1
+2023-04-05 11:47:14,250 - INFO - Producto modificado por Jorge Antonio con id 1
