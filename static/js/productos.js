@@ -1,7 +1,9 @@
 $(document).ready(function(){ 
 
-    $('#btnComprar').click(function() {
-        console.log("hola");
+      $('#btnComprar').click(function() {
+        console.log($(this));
       });
-      
+
+          
+  
  });

@@ -1,21 +1,47 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="mt-4 title text-center">
- Productos
-</h1>
+
 <div class="row mb-4" >
     {%for row in productos%}
-    <div class="card mr-5 mt-4" style="width: 20rem;">
-        <img class="card-img-top" src="https://images.photowall.com/products/54675/surfboard.jpg?h=699&q=85" alt="Card image cap">
-        <div class="card-body">
+    <div class="card mr-5 mt-4" style="width: 18rem;">
+        <img class="card-img-top " style="height: 16rem;" src="https://images.photowall.com/products/54675/surfboard.jpg?h=699&q=85" alt="Card image cap">
+        <div class="card-body"  >
           <h5 class="card-title">{{row.nombreProducto}}</h5>
-          <p class="card-text">Precio {{row.precio}} <br> Cantidad Disponible {{row.cantidad}}<br> Marca {{row.marca}} </p>
-          <button id="btnComprar" class="btn btn-primary">Comprar</button>
+          <p class="text-danger">!Solo quedan {{row.cantidad}}!</p>
+
+          <div class="row container">
+            <p class="card-text mr-2">{{row.marca}} </p>|
+            <p class="ml-2">MXN ${{row.precio}}</p>
+          </div>
+          
+          <div class="row ">
+          <!-- <button onclick="agregar('{{row.cantidad}}','{{row.id}}')" class="btn text-white btn-warning  col-2">+</button>
+          <input class="form-control col-3" id="cantidadAgregada{{row.id}}">
+          <button onclick="quitar('{{row.cantidad}}','{{row.id}}')" class="btn text-white btn-warning col-2">-</button> -->
+          <button  class="btn text-white btn-warning ml-3 col-4"><i class="bi bi-cart-dash"></i> añadir</button>
+
+        </div>
+
         </div>
       </div>
     {%endfor%}
 
      
     </div>
+    <script>
+// var cantidad=0;
+// function agregar(cantidadDisponible,id){
+//   document.getElementById("cantidadAgregada"+id).value=cantidad;
+//   if(cantidad<cantidadDisponible){   
+//     cantidad++;  }
+// }
+
+// function quitar(cantidadDisponible,id){
+//   document.getElementById("cantidadAgregada"+id).value=cantidad;
+//   if(cantidad>0){
+//     cantidad--;
+//   }
+// }
+    </script>
 {% endblock %}
