@@ -1,5 +1,5 @@
 from flask import Blueprint
-alumnos= Blueprint('alumnos',__name__)
+alumnos = Blueprint('alumnos',__name__)
 from flask import redirect, render_template, url_for
 from flask import request
 import forms 
