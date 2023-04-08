@@ -22,7 +22,6 @@
     <script>
 $(document).ready(function(){
  });
- //SOLUCIONAR ERROR PONER LIMITE A LA CANTIDAD DE PRODUCTOS AÑADIDOS
  var cantidadAñadido=0;
  var carrito=[];
  function agregarCanasta(id,nombreProducto,cantidad){
@@ -49,17 +48,16 @@ cantidadAñadido++;
   
 $.each(carrito, function(index, value) {
   content +=  carrito[index].nombreProducto;
-  content +=  '<div class="row mt-2"><button onclick="agregar('+carrito[index].id+','+cantidad+')" class="btn btn-outline-warning ml-4">+</button>';
+  content +=  '<div class="row mt-2"><button onclick="agregar('+carrito[index].id+')" class="btn btn-outline-warning ml-4">+</button>';
   content+='<div class="col-4 "><input type="text" value="'+carrito[index].cantidadAñadido+'" class=" text-center form-control" aria-label="Recipientusername with two button addons" aria-describedby="button-addon1" readonly></div>';
-  content+='<button onclick="quitar('+carrito[index].id+','+cantidad+')" class="btn btn-outline-warning ">-</button></div>';
+  content+='<button onclick="quitar('+carrito[index].id+')" class="btn btn-outline-warning ">-</button></div>';
 
 });
 content +=  '<div class="container"><button id="btnComprar" class="btn text-white btn-block mt-3" style="background-color: #4abaa5;">comprar</button></div>';
 $(popUpCarrito).attr('data-content', content);
 $(popUpCarrito).popover('show');    
   }
-function agregar(id,cantidad){
-  //el error esta aqui al sumar cantidad agarra la cantidad del otro boton y no se puede sumar mas de una vez
+function agregar(id){
   const popUpCarrito = document.getElementById("popUpCarrito");
 var content = '';
 let index = carrito.findIndex(producto => producto.id==id);
@@ -76,9 +74,9 @@ if (index !== -1) {
 
 $.each(carrito, function(index, value) {
   content +=  carrito[index].nombreProducto;
-  content +=  '<div class="row mt-2"><button onclick="agregar('+carrito[index].id+','+cantidad+')" class="btn btn-outline-warning ml-4">+</button>';
+  content +=  '<div class="row mt-2"><button onclick="agregar('+carrito[index].id+')" class="btn btn-outline-warning ml-4">+</button>';
   content+='<div class="col-4 "><input type="text" value="'+carrito[index].cantidadAñadido+'" class=" text-center form-control" aria-label="Recipientusername with two button addons" aria-describedby="button-addon1" readonly></div>';
-  content+='<button onclick="quitar('+carrito[index].id+','+cantidad+')" class="btn btn-outline-warning ">-</button></div>';
+  content+='<button onclick="quitar('+carrito[index].id+')" class="btn btn-outline-warning ">-</button></div>';
 });
 content +=  '<div class="container"><button id="btnComprar" class="btn text-white btn-block mt-3" style="background-color: #4abaa5;">comprar</button></div>';
 $(popUpCarrito).attr('data-content', content);
@@ -87,7 +85,7 @@ $(popUpCarrito).popover('show');
 
 }
 
-function quitar(id,cantidad){
+function quitar(id){
   const popUpCarrito = document.getElementById("popUpCarrito");
   var content = '';
   let index = carrito.findIndex(producto => producto.id==id);
@@ -119,9 +117,9 @@ if (index !== -1) {
 
 $.each(carrito, function(index, value) {
  content +=  carrito[index].nombreProducto;
- content +=  '<div class="row mt-2"><button onclick="agregar('+carrito[index].id+','+cantidad+')" class="btn btn-outline-warning ml-4">+</button>';
+ content +=  '<div class="row mt-2"><button onclick="agregar('+carrito[index].id+')" class="btn btn-outline-warning ml-4">+</button>';
  content+='<div class="col-4 "><input type="text" value="'+carrito[index].cantidadAñadido+'" class=" text-center form-control" aria-label="Recipientusername with two button addons" aria-describedby="button-addon1" readonly></div>';
- content+='<button onclick="quitar('+carrito[index].id+','+cantidad+')" class="btn btn-outline-warning ">-</button></div>';
+ content+='<button onclick="quitar('+carrito[index].id+')" class="btn btn-outline-warning ">-</button></div>';
 });
 content +=  '<div class="container"><button id="btnComprar" class="btn text-white btn-block mt-3" style="background-color: #4abaa5;">comprar</button></div>';
 $(popUpCarrito).attr('data-content', content);
