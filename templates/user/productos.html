@@ -52,7 +52,7 @@ $.each(carrito, function(index, value) {
   content +=  carrito[index].nombreProducto;
   content +=  '<div class="row mt-2"><button onclick="agregar('+carrito[index].id+','+cantidad+')" class="btn btn-outline-warning ml-4">+</button>';
   content+='<div class="col-4 "><input type="text" value="'+carrito[index].cantidadAñadido+'" class=" text-center form-control" aria-label="Recipientusername with two button addons" aria-describedby="button-addon1" readonly></div>';
-  content+='<button onclick="quitar('+carrito[index].id+')" class="btn btn-outline-warning ">-</button></div>';
+  content+='<button onclick="quitar('+carrito[index].id+','+cantidad+')" class="btn btn-outline-warning ">-</button></div>';
 
 });
 content +=  '<div class="container"><button id="btnComprar" class="btn text-white btn-block mt-3" style="background-color: #4abaa5;">comprar</button></div>';
@@ -65,9 +65,10 @@ var content = '';
 let index = carrito.findIndex(producto => producto.id==id);
 // Verificar si se encontró el objeto en el array
 if (index !== -1) {
+  console.log("hola")
   if(carrito[index].cantidadAñadido<cantidad){
-
   carrito[index].cantidadAñadido=carrito[index].cantidadAñadido+1;
+  console.log(carrito[index].cantidadAñadido)
   cantidadAñadido++;
   $( "#txtPopupCantidad" ).empty();
   $( "#txtPopupCantidad" ).append( document.createTextNode( cantidadAñadido ));
@@ -79,7 +80,7 @@ $.each(carrito, function(index, value) {
   content +=  carrito[index].nombreProducto;
   content +=  '<div class="row mt-2"><button onclick="agregar('+carrito[index].id+','+cantidad+')" class="btn btn-outline-warning ml-4">+</button>';
   content+='<div class="col-4 "><input type="text" value="'+carrito[index].cantidadAñadido+'" class=" text-center form-control" aria-label="Recipientusername with two button addons" aria-describedby="button-addon1" readonly></div>';
-  content+='<button onclick="quitar('+carrito[index].id+')" class="btn btn-outline-warning ">-</button></div>';
+  content+='<button onclick="quitar('+carrito[index].id+','+cantidad+')" class="btn btn-outline-warning ">-</button></div>';
 });
 content +=  '<div class="container"><button id="btnComprar" class="btn text-white btn-block mt-3" style="background-color: #4abaa5;">comprar</button></div>';
 $(popUpCarrito).attr('data-content', content);
@@ -88,7 +89,7 @@ $(popUpCarrito).popover('show');
 
 }
 
-function quitar(id){
+function quitar(id,cantidad){
   const popUpCarrito = document.getElementById("popUpCarrito");
   var content = '';
   let index = carrito.findIndex(producto => producto.id==id);
@@ -100,6 +101,7 @@ if (index !== -1) {
     carrito.splice(index, 1); 
   
   }
+  console.log(carrito)
 
 }
   if(cantidadAñadido>1){
@@ -120,9 +122,9 @@ if (index !== -1) {
 
 $.each(carrito, function(index, value) {
  content +=  carrito[index].nombreProducto;
- content +=  '<div class="row mt-2"><button onclick="agregar('+carrito[index].id+')" class="btn btn-outline-warning ml-4">+</button>';
+ content +=  '<div class="row mt-2"><button onclick="agregar('+carrito[index].id+','+cantidad+')" class="btn btn-outline-warning ml-4">+</button>';
  content+='<div class="col-4 "><input type="text" value="'+carrito[index].cantidadAñadido+'" class=" text-center form-control" aria-label="Recipientusername with two button addons" aria-describedby="button-addon1" readonly></div>';
- content+='<button onclick="quitar('+carrito[index].id+')" class="btn btn-outline-warning ">-</button></div>';
+ content+='<button onclick="quitar('+carrito[index].id+','+cantidad+')" class="btn btn-outline-warning ">-</button></div>';
 });
 content +=  '<div class="container"><button id="btnComprar" class="btn text-white btn-block mt-3" style="background-color: #4abaa5;">comprar</button></div>';
 $(popUpCarrito).attr('data-content', content);
