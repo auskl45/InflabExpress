@@ -27,20 +27,19 @@ $(document).ready(function(){
  var carrito=[];
  function agregarCanasta(id,nombreProducto,cantidad){
   const popUpCarrito = document.getElementById("popUpCarrito");
-var content = '';
-  // if(cantidadAñadido<cantidad){
-  
+var content = '';  
         var encontrado = carrito.some(function(producto) {return producto.id === id;});
 if (!encontrado) {
   carrito.push({
     id:id,
     nombreProducto:nombreProducto,
-    cantidadAñadido:0
+    cantidadAñadido:0,
+    cantidadMaxima:cantidad
   })}
   let index = carrito.findIndex(producto => producto.id === id);
   // Verificar si se encontró el objeto en el array
   if (index !== -1) {
-  if(carrito[index].cantidadAñadido<cantidad){
+  if(carrito[index].cantidadAñadido<carrito[index].cantidadMaxima){
     carrito[index].cantidadAñadido=carrito[index].cantidadAñadido+1;  
 cantidadAñadido++;
     $( "#txtPopupCantidad" ).empty();
@@ -60,15 +59,14 @@ $(popUpCarrito).attr('data-content', content);
 $(popUpCarrito).popover('show');    
   }
 function agregar(id,cantidad){
+  //el error esta aqui al sumar cantidad agarra la cantidad del otro boton y no se puede sumar mas de una vez
   const popUpCarrito = document.getElementById("popUpCarrito");
 var content = '';
 let index = carrito.findIndex(producto => producto.id==id);
 // Verificar si se encontró el objeto en el array
 if (index !== -1) {
-  console.log("hola")
-  if(carrito[index].cantidadAñadido<cantidad){
+  if(carrito[index].cantidadAñadido<carrito[index].cantidadMaxima){
   carrito[index].cantidadAñadido=carrito[index].cantidadAñadido+1;
-  console.log(carrito[index].cantidadAñadido)
   cantidadAñadido++;
   $( "#txtPopupCantidad" ).empty();
   $( "#txtPopupCantidad" ).append( document.createTextNode( cantidadAñadido ));
@@ -101,7 +99,6 @@ if (index !== -1) {
     carrito.splice(index, 1); 
   
   }
-  console.log(carrito)
 
 }
   if(cantidadAñadido>1){
