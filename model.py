@@ -69,6 +69,7 @@ class Producto(db.Model, RoleMixin):
     altura = db.Column(db.Float())
     ancho = db.Column(db.Float())
     largo = db.Column(db.Float())
+    image = db.Column(db.Text, nullable=False)
     subtotal = db.Column(db.Float())
     total = db.Column(db.Float())
     create_date=db.Column(db.DateTime,default=datetime.datetime.now)

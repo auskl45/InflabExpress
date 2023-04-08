@@ -2,10 +2,11 @@ from flask import Blueprint, render_template,flash
 from flask_security import login_required, current_user
 from flask_security.decorators import roles_required
 import logging
-from forms import UseForm
+from forms import UseForm,ProductoForm
 from model import Producto,db
 from flask import request
 from flask import redirect, render_template, url_for
+import base64
 
 # productos = Blueprint('productos', _name_, url_prefix='/productos')
 logger = logging.getLogger(__name__)
@@ -40,13 +41,21 @@ def productosMenu():
 
 @productos.route("/agregarProducto",methods=['GET','POST'])
 def agregarProducto():
-    create_forms=UseForm(request.form)
+    create_forms=ProductoForm(request.form)
     if request.method=='POST':
         try:
-            product= Producto(nombreProducto=create_forms.nombreProducto.data,
-                        precio=create_forms.precio.data,
-                        marca=create_forms.marca.data,
-                        cantidad=create_forms.cantidad.data)
+            imagenR= request.files['image']
+            imagen = base64.b64encode(imagenR.read())
+            product= Producto(
+                 nombre = create_forms.nombre.data,
+                 descripcion = create_forms.descripcion.data,
+                 stock = create_forms.stock.data,
+                 altura = create_forms.altura.data,
+                 ancho = create_forms.ancho.data,
+                 largo = create_forms.largo.data,
+                 image = imagen,
+                 subtotal = create_forms.subtotal.data,
+                 total = create_forms.total.data)
             db.session.add(product)
             db.session.commit()
             logger.info('Producto agregado por'+current_user.name+' con id '+str(current_user.id))
@@ -59,27 +68,43 @@ def agregarProducto():
 
 @productos.route("/modificarProducto",methods=['GET','POST'])
 def modificarProducto():
-    create_forms=UseForm(request.form)
+    create_forms=ProductoForm(request.form)
     if request.method=='GET':
         id=request.args.get('id')
         product= db.session.query(Producto).filter(Producto.id==id).first()
         create_forms.id.data=product.id
+        create_forms.nombre.data= product.nombre
+        create_forms.descripcion.data= product.descripcion
+        create_forms.stock.data= product.stock
+        create_forms.altura.data= product.altura
+        create_forms.ancho.data= product.ancho
+        create_forms.largo.data= product.largo
+        create_forms.subtotal.data= product.subtotal
+        create_forms.total.data= product.total
+        create_forms.image.data= product.image
+        """create_forms.id.data=product.id
         create_forms.nombreProducto.data= product.nombreProducto
         create_forms.precio.data= product.precio
         create_forms.marca.data= product.marca
-        create_forms.cantidad.data= product.cantidad
+        create_forms.cantidad.data= product.cantidad"""
 
 
     if request.method=='POST':
         try:
+            imagenR= request.files['image']
+            imagen = base64.b64encode(imagenR.read())
+            print(imagen)
             id=create_forms.id.data
             product= db.session.query(Producto).filter(Producto.id==id).first()
             product.id=create_forms.id.data
-            product.nombreProducto=create_forms.nombreProducto.data
-            product.precio=create_forms.precio.data
-            product.marca=create_forms.marca.data
-            product.cantidad=create_forms.cantidad.data
-
+            product.nombre=create_forms.nombre.data
+            product.descripcion=create_forms.descripcion.data
+            product.stock=create_forms.stock.data
+            product.altura=create_forms.altura.data
+            product.ancho=create_forms.ancho.data
+            product.largo=create_forms.largo.data
+            product.subtotal=create_forms.subtotal.data
+            product.total=create_forms.total.data
             db.session.add(product)
             db.session.commit()
             logger.info('Producto modificado por '+current_user.name+' con id '+str(current_user.id))
