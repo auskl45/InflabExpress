@@ -39,6 +39,8 @@ def productosMenu():
         return render_template('user/productos.html',productos=productosAll)
 
 @productos.route("/agregarProducto",methods=['GET','POST'])
+@login_required
+@roles_required('admin')
 def agregarProducto():
     create_forms=UseForm(request.form)
     if request.method=='POST':
@@ -58,6 +60,8 @@ def agregarProducto():
 
 
 @productos.route("/modificarProducto",methods=['GET','POST'])
+@login_required
+@roles_required('admin')
 def modificarProducto():
     create_forms=UseForm(request.form)
     if request.method=='GET':
@@ -90,6 +94,8 @@ def modificarProducto():
     return render_template('admin/modificar.html',form=create_forms)
 
 @productos.route("/eliminarProducto")
+@login_required
+@roles_required('admin')
 def eliminarProducto():
         id=request.args.get('id')
         product= db.session.query(Producto).filter(Producto.id==id).first()

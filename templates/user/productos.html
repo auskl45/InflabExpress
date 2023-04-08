@@ -1,7 +1,5 @@
 {% extends "base.html" %}
-
 {% block content %}
-
 <div class="row mb-4" >
     {%for row in productos%}
     <div class="card mr-5 mt-4" style="width: 18rem;">
@@ -14,34 +12,123 @@
             <p class="card-text mr-2">{{row.marca}} </p>|
             <p class="ml-2">MXN ${{row.precio}}</p>
           </div>
-          
           <div class="row ">
-          <!-- <button onclick="agregar('{{row.cantidad}}','{{row.id}}')" class="btn text-white btn-warning  col-2">+</button>
-          <input class="form-control col-3" id="cantidadAgregada{{row.id}}">
-          <button onclick="quitar('{{row.cantidad}}','{{row.id}}')" class="btn text-white btn-warning col-2">-</button> -->
-          <button  class="btn text-white btn-warning ml-3 col-4"><i class="bi bi-cart-dash"></i> añadir</button>
-
+          <button class="btn text-white btn-warning ml-3 col-4" onclick="agregarCanasta('{{row.id}}','{{row.nombreProducto}}')" id="btnAdd"><i class="bi bi-cart-dash"></i> añadir</button>
         </div>
-
         </div>
       </div>
     {%endfor%}
-
-     
     </div>
     <script>
-// var cantidad=0;
-// function agregar(cantidadDisponible,id){
-//   document.getElementById("cantidadAgregada"+id).value=cantidad;
-//   if(cantidad<cantidadDisponible){   
-//     cantidad++;  }
-// }
+$(document).ready(function(){
+ });
+ var cantidadAñadido=0;
+ var carrito=[];
+ function agregarCanasta(id,nombreProducto){
+        cantidadAñadido++;
+          console.log(cantidadAñadido);
 
-// function quitar(cantidadDisponible,id){
-//   document.getElementById("cantidadAgregada"+id).value=cantidad;
-//   if(cantidad>0){
-//     cantidad--;
-//   }
-// }
+        $( "#txtPopupCantidad" ).empty();
+        $( "#txtPopupCantidad" ).append( document.createTextNode( cantidadAñadido ));
+var encontrado = carrito.some(function(producto) {return producto.id === id;});
+if (!encontrado) {
+  carrito.push({
+    id:id,
+    nombreProducto:nombreProducto,
+    cantidadAñadido:0
+  })}
+  let index = carrito.findIndex(producto => producto.id === id);
+// Verificar si se encontró el objeto en el array
+if (index !== -1) {
+  carrito[index].cantidadAñadido=carrito[index].cantidadAñadido+1;
+}
+
+const popUpCarrito = document.getElementById("popUpCarrito");
+var content = '';
+$.each(carrito, function(index, value) {
+  content +=  carrito[index].nombreProducto;
+  content +=  '<div class="row mt-2"><button onclick="agregar('+carrito[index].id+')" class="btn btn-outline-warning ml-4">+</button>';
+  content+='<div class="col-4 "><input type="text" value="'+carrito[index].cantidadAñadido+'" class=" text-center form-control" aria-label="Recipientusername with two button addons" aria-describedby="button-addon1" readonly></div>';
+  content+='<button onclick="quitar('+carrito[index].id+')" class="btn btn-outline-warning ">-</button></div>';
+
+});
+content +=  '<div class="container"><button id="btnComprar" class="btn text-white btn-block mt-3" style="background-color: #4abaa5;">comprar</button></div>';
+$(popUpCarrito).attr('data-content', content);
+$(popUpCarrito).popover('show');
+    console.log(carrito);
+    
+  }
+
+// var cantidad=0;
+function agregar(id){
+ 
+  cantidadAñadido++;
+  console.log(cantidadAñadido);
+  $( "#txtPopupCantidad" ).empty();
+  $( "#txtPopupCantidad" ).append( document.createTextNode( cantidadAñadido ));
+  let index = carrito.findIndex(producto => producto.id==id);
+// Verificar si se encontró el objeto en el array
+if (index !== -1) {
+  carrito[index].cantidadAñadido=carrito[index].cantidadAñadido+1;
+
+}
+const popUpCarrito = document.getElementById("popUpCarrito");
+var content = '';
+$.each(carrito, function(index, value) {
+  content +=  carrito[index].nombreProducto;
+  content +=  '<div class="row mt-2"><button onclick="agregar('+carrito[index].id+')" class="btn btn-outline-warning ml-4">+</button>';
+  content+='<div class="col-4 "><input type="text" value="'+carrito[index].cantidadAñadido+'" class=" text-center form-control" aria-label="Recipientusername with two button addons" aria-describedby="button-addon1" readonly></div>';
+  content+='<button onclick="quitar('+carrito[index].id+')" class="btn btn-outline-warning ">-</button></div>';
+});
+content +=  '<div class="container"><button id="btnComprar" class="btn text-white btn-block mt-3" style="background-color: #4abaa5;">comprar</button></div>';
+$(popUpCarrito).attr('data-content', content);
+$(popUpCarrito).popover('show');
+
+
+}
+
+function quitar(id){
+  const popUpCarrito = document.getElementById("popUpCarrito");
+  var content = '';
+  let index = carrito.findIndex(producto => producto.id==id);
+// Verificar si se encontró el objeto en el array
+if (index !== -1) {
+  if(carrito[index].cantidadAñadido>1){
+    carrito[index].cantidadAñadido=carrito[index].cantidadAñadido-1;
+  }else{
+    carrito.splice(index, 1); 
+  
+  }
+
+}
+  if(cantidadAñadido>1){
+    cantidadAñadido--;
+ $( "#txtPopupCantidad" ).empty();
+ $( "#txtPopupCantidad" ).append( document.createTextNode( cantidadAñadido ));
+  }else{
+    cantidadAñadido--;
+   $( "#txtPopupCantidad" ).empty();
+    content =  "<span class='text-white badge rounded-pill badge-notification bg-danger'>0</span> articulos añadidos";
+  $("#btnComprar").remove();
+  console.log($("#btnComprar"));
+  $(popUpCarrito).attr('data-content', content);
+  $(popUpCarrito).popover('show');
+  $(popUpCarrito).popover('refresh');
+  }
+ 
+
+
+$.each(carrito, function(index, value) {
+ content +=  carrito[index].nombreProducto;
+ content +=  '<div class="row mt-2"><button onclick="agregar('+carrito[index].id+')" class="btn btn-outline-warning ml-4">+</button>';
+ content+='<div class="col-4 "><input type="text" value="'+carrito[index].cantidadAñadido+'" class=" text-center form-control" aria-label="Recipientusername with two button addons" aria-describedby="button-addon1" readonly></div>';
+ content+='<button onclick="quitar('+carrito[index].id+')" class="btn btn-outline-warning ">-</button></div>';
+});
+content +=  '<div class="container"><button id="btnComprar" class="btn text-white btn-block mt-3" style="background-color: #4abaa5;">comprar</button></div>';
+$(popUpCarrito).attr('data-content', content);
+$(popUpCarrito).popover('show');
+
+
+}
     </script>
 {% endblock %}
