@@ -13,7 +13,7 @@
             <p class="ml-2">MXN ${{row.precio}}</p>
           </div>
           <div class="row ">
-          <button class="btn text-white btn-warning ml-3 col-4" onclick="agregarCanasta('{{row.id}}','{{row.nombreProducto}}')" id="btnAdd"><i class="bi bi-cart-dash"></i> añadir</button>
+          <button class="btn text-white btn-warning ml-3 col-4" onclick="agregarCanasta('{{row.id}}','{{row.nombreProducto}}','{{row.cantidad}}')" id="btnAdd"><i class="bi bi-cart-dash"></i> añadir</button>
         </div>
         </div>
       </div>
@@ -22,15 +22,15 @@
     <script>
 $(document).ready(function(){
  });
+ //SOLUCIONAR ERROR PONER LIMITE A LA CANTIDAD DE PRODUCTOS AÑADIDOS
  var cantidadAñadido=0;
  var carrito=[];
- function agregarCanasta(id,nombreProducto){
-        cantidadAñadido++;
-          console.log(cantidadAñadido);
-
-        $( "#txtPopupCantidad" ).empty();
-        $( "#txtPopupCantidad" ).append( document.createTextNode( cantidadAñadido ));
-var encontrado = carrito.some(function(producto) {return producto.id === id;});
+ function agregarCanasta(id,nombreProducto,cantidad){
+  const popUpCarrito = document.getElementById("popUpCarrito");
+var content = '';
+  // if(cantidadAñadido<cantidad){
+  
+        var encontrado = carrito.some(function(producto) {return producto.id === id;});
 if (!encontrado) {
   carrito.push({
     id:id,
@@ -38,45 +38,46 @@ if (!encontrado) {
     cantidadAñadido:0
   })}
   let index = carrito.findIndex(producto => producto.id === id);
-// Verificar si se encontró el objeto en el array
-if (index !== -1) {
-  carrito[index].cantidadAñadido=carrito[index].cantidadAñadido+1;
-}
-
-const popUpCarrito = document.getElementById("popUpCarrito");
-var content = '';
+  // Verificar si se encontró el objeto en el array
+  if (index !== -1) {
+  if(carrito[index].cantidadAñadido<cantidad){
+    carrito[index].cantidadAñadido=carrito[index].cantidadAñadido+1;  
+cantidadAñadido++;
+    $( "#txtPopupCantidad" ).empty();
+        $( "#txtPopupCantidad" ).append( document.createTextNode( cantidadAñadido ));
+  }
+  }
+  
 $.each(carrito, function(index, value) {
   content +=  carrito[index].nombreProducto;
-  content +=  '<div class="row mt-2"><button onclick="agregar('+carrito[index].id+')" class="btn btn-outline-warning ml-4">+</button>';
+  content +=  '<div class="row mt-2"><button onclick="agregar('+carrito[index].id+','+cantidad+')" class="btn btn-outline-warning ml-4">+</button>';
   content+='<div class="col-4 "><input type="text" value="'+carrito[index].cantidadAñadido+'" class=" text-center form-control" aria-label="Recipientusername with two button addons" aria-describedby="button-addon1" readonly></div>';
   content+='<button onclick="quitar('+carrito[index].id+')" class="btn btn-outline-warning ">-</button></div>';
 
 });
 content +=  '<div class="container"><button id="btnComprar" class="btn text-white btn-block mt-3" style="background-color: #4abaa5;">comprar</button></div>';
 $(popUpCarrito).attr('data-content', content);
-$(popUpCarrito).popover('show');
-    console.log(carrito);
-    
+$(popUpCarrito).popover('show');    
   }
-
-// var cantidad=0;
-function agregar(id){
- 
-  cantidadAñadido++;
-  console.log(cantidadAñadido);
-  $( "#txtPopupCantidad" ).empty();
-  $( "#txtPopupCantidad" ).append( document.createTextNode( cantidadAñadido ));
-  let index = carrito.findIndex(producto => producto.id==id);
+function agregar(id,cantidad){
+  const popUpCarrito = document.getElementById("popUpCarrito");
+var content = '';
+let index = carrito.findIndex(producto => producto.id==id);
 // Verificar si se encontró el objeto en el array
 if (index !== -1) {
-  carrito[index].cantidadAñadido=carrito[index].cantidadAñadido+1;
+  if(carrito[index].cantidadAñadido<cantidad){
 
+  carrito[index].cantidadAñadido=carrito[index].cantidadAñadido+1;
+  cantidadAñadido++;
+  $( "#txtPopupCantidad" ).empty();
+  $( "#txtPopupCantidad" ).append( document.createTextNode( cantidadAñadido ));
 }
-const popUpCarrito = document.getElementById("popUpCarrito");
-var content = '';
+ }
+
+
 $.each(carrito, function(index, value) {
   content +=  carrito[index].nombreProducto;
-  content +=  '<div class="row mt-2"><button onclick="agregar('+carrito[index].id+')" class="btn btn-outline-warning ml-4">+</button>';
+  content +=  '<div class="row mt-2"><button onclick="agregar('+carrito[index].id+','+cantidad+')" class="btn btn-outline-warning ml-4">+</button>';
   content+='<div class="col-4 "><input type="text" value="'+carrito[index].cantidadAñadido+'" class=" text-center form-control" aria-label="Recipientusername with two button addons" aria-describedby="button-addon1" readonly></div>';
   content+='<button onclick="quitar('+carrito[index].id+')" class="btn btn-outline-warning ">-</button></div>';
 });
@@ -110,7 +111,6 @@ if (index !== -1) {
    $( "#txtPopupCantidad" ).empty();
     content =  "<span class='text-white badge rounded-pill badge-notification bg-danger'>0</span> articulos añadidos";
   $("#btnComprar").remove();
-  console.log($("#btnComprar"));
   $(popUpCarrito).attr('data-content', content);
   $(popUpCarrito).popover('show');
   $(popUpCarrito).popover('refresh');
