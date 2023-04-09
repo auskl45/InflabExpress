@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Agregar Materia Prima</h1>
+  <form method="POST" action="/agregarGastoMateria">
+    {{ form.csrf_token }}
+    <div class="form-group">
+        <label for="inflable_id">Selecciona el inflable</label>
+        <select class="form-control" id="inflable_id" name="inflable_id">
+            {% for inflable in inflables %}
+            <option value="{{inflable.id}}">{{inflable.nombre}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+            <label for="materiaPrima_id">Selecciona la materia prima</label>
+            <select class="form-control" id="materiaPrima_id" name="materiaPrima_id">
+                {% for materiaPrima in materiaPrimas %}
+                <option value="{{materiaPrima.id}}">{{materiaPrima.nombre}}</option>
+                {% endfor %}
+              </select>
+            </div>
+    <div class="form-group">
+        <label for="cantidadGastada">Cantidad gastada de materia</label>
+        <input type="number" class="form-control" id="cantidadGastada" name="cantidadGastada" required>
+    </div>
+    <div class="form-group">
+      {{ form.total.label(class="control-label") }}
+      {{ form.total(class="form-control") }}
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar</button>
+  </form>
+
+{% endblock %}

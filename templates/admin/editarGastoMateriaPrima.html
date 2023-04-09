@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h1>Editar Gasto Materia Prima</h1>
+  <form method="POST" action="/modificarGastoMateria">
+    {{ form.csrf_token }}
+    <div class="form-group">
+        {{ form.id.label(class="control-label") }}
+        {{ form.id(class="form-control") }}
+      </div>
+    <div class="form-group">
+        <label for="inflable_id">inflable:</label>
+        <select class="form-control" id="inflable_id" name="inflable_id">
+            {% for inflable in inflables %}
+            {% if inflable.id == form.producto_id %}
+            <option value="{{inflable.id}}" selected>{{inflable.nombre}}</option>
+            {% else %}
+            <option value="{{inflable.id}}">{{inflable.nombre}}</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+            <label for="materiaPrima_id">materia prima:</label>
+            <select class="form-control" id="materiaPrima_id" name="materiaPrima_id">
+                {% for materiaPrima in materiaPrimas %}
+                {% if materiaPrima.id == form.materiaPrima_id %}
+                <option value="{{materiaPrima.id}}" selected>{{materiaPrima.nombre}}</option>
+                {% else %}
+                <option value="{{materiaPrima.id}}">{{materiaPrima.nombre}}</option>
+                {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+    <div class="form-group">
+        <label for="cantidad">Cantidad gastada de materia</label>
+        {{form.cantidad(class="form-control")}}
+        </div>
+    <div class="form-group">
+      {{ form.total.label(class="control-label") }}
+      {{ form.total(class="form-control") }}
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar</button>
+  </form>
+
+{% endblock %}

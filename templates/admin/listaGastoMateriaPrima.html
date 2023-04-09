@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h4>Lista de gastos de materias primas</h4>
+  
+  <div class="container">
+    <div class="row">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr class="tr-head">
+        <th>id</th>
+        <th>materia Prima</th>
+        <th>cantidad</th>
+        <th>costo</th>
+        <th>nombre Inflabe</th>
+        <th>inflable</th>
+        <th>modificar</th>
+        <th>eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for GastoMateria in gastomateriaPrima  %}
+        <tr>
+          <td>{{GastoMateria.id}}</td>
+          {% for materiaprimas in materiaPrimas %}
+            {% if materiaprimas.id == GastoMateria.materiaPrima_id %}
+              <td>{{ materiaprimas.nombre }}</td>
+            {% endif %}
+          {% endfor %}
+          <td>{{ GastoMateria.cantidad }}</td>
+          <td>{{ GastoMateria.costo }}</td>
+          {% for inflable in inflables %}
+            {% if inflable.id == GastoMateria.producto_id %}
+              <td>{{ inflable.nombre }}</td>
+              <td><img src="data:image/png;base64,{{inflable.image}}" style="width: 150px;height: auto;"></td>
+            {% endif %}
+          {% endfor %}
+          <td><a href="modificarGastoMateria?id={{GastoMateria.id}}" class="btn btn-warning">
+            <i class="icon-warning icon-white"></i>Modificar
+        </a></td>
+          <td>
+            <a href="eliminarGastoMateria?id={{GastoMateria.id}}" class="btn btn-danger">
+              <i class="icon-remove icon-white"></i>Eliminar
+          </a>
+          </td>
+
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<div class="row">
+  <a href="agregarGastoMateria" class="btn btn-success">
+    <i class="icon-warning icon-white"></i>Agregar
+  </a>
+</div>
+</div>
+{% endblock %}
