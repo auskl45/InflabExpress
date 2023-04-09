@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Editar producto</h1>
+  <form method="POST" action="/modificarMateriaPrima">
+    {{ form.csrf_token }}
+    <div class="form-group">
+      {{ form.id.label(class="control-label")}}
+      {{ form.id(class="form-control") }}
+    </div>
+    <div class="form-group">
+      {{ form.nombre.label(class="control-label") }}
+      {{ form.nombre(class="form-control") }}
+    </div>
+    <div class="form-group">
+      {{ form.color.label(class="control-label") }}
+      {{ form.color(class="form-control") }}
+    </div>
+    <div class="form-group">
+      {{ form.costo.label(class="control-label") }}
+      {{ form.costo(class="form-control") }}
+    </div>
+    <div class="form-group">
+      {{ form.stock.label(class="control-label") }}
+      {{ form.stock(class="form-control") }}
+    </div>
+    <div class="form-group">
+        <label for="tipoMateriaPrima_id">tipo de materia</label>
+        <select class="form-control" id="tipoMateriaPrima_id" name="tipoMateriaPrima_id">
+            {% for tipo in tipoMateriaPrima %}
+            {% if tipo.id == form.tipoMateriaPrima_id %}
+            <option value="{{tipo.id}}" selected>{{tipo.tipo}}</option>
+            {% else %}
+            <option value="{{tipo.id}}">{{tipo.tipo}}</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+      </div>
+    <div class="form-group">
+        <label for="proveedor_id">proveedor</label>
+        <select class="form-control" id="proveedor_id" name="proveedor_id">
+            {% for proveedor in proveedores %}
+            {% if proveedor.id == form.proveedor_id %}
+            <option value="{{proveedor.id}}" selected>{{proveedor.nombre}}</option>
+            {% else %}
+            <option value="{{proveedor.id}}">{{proveedor.nombre}}</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+      </div>
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+  </form>
+{% endblock %}

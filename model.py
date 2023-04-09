@@ -84,6 +84,16 @@ class TipoMateriaPrima(db.Model):
     create_date=db.Column(db.DateTime,default=datetime.datetime.now)
     tipoMateriaPrima = db.relationship('MateriaPrima', backref='tipoMateriaPrima', lazy='dynamic')
 
+"""## Definir materia prima
+class MateriaPrima(db.Model, RoleMixin):
+    id = db.Column(db.Integer(), primary_key=True)
+    id_tipo = db.Column(db.Integer())
+    nombreMateriaPrima = db.Column(db.String(80), unique=True)
+    color = db.Column(db.String(255))
+    costo = db.Column(db.Float())
+    stock = db.Column(db.Integer())
+    idProveedor = db.Column(db.Integer())"""
+
 class MateriaPrima(db.Model):
     __tablename__='materiaprima'
     id = db.Column(db.Integer(), primary_key=True)

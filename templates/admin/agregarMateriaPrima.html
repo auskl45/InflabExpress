@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Agregar Materia Prima</h1>
+  <form method="POST" action="/agregar_materia_prima">
+    {{ form.csrf_token }}
+    <div class="form-group">
+      {{ form.nombre.label(class="control-label") }}
+      {{ form.nombre(class="form-control") }}
+    </div>
+    <div class="form-group">
+      {{ form.color.label(class="control-label") }}
+      {{ form.color(class="form-control") }}
+    </div>
+    <div class="form-group">
+      {{ form.costo.label(class="control-label") }}
+      {{ form.costo(class="form-control") }}
+    </div>
+    <div class="form-group">
+      {{ form.stock.label(class="control-label") }}
+      {{ form.stock(class="form-control") }}
+    </div>
+    <div class="row form-group">
+        <div class="col-10">
+        <label for="tipoMateriaPrima_id">tipo de materia</label>
+        <select class="form-control" id="tipoMateriaPrima_id" name="tipoMateriaPrima_id">
+            {% for tipo in tipoMateriaPrima %}
+            <option value="{{tipo.id}}">{{tipo.tipo}}</option>
+            {% endfor %}
+          </select>
+          </div>
+          <div class="col-2">
+          <button type="button" class="btn btn-primary mt-4" data-toggle="modal" data-target="#exampleModal">Agregar tipo</button>
+        </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-10">
+        <label for="proveedor_id">proveedor</label>
+        <select class="form-control" id="proveedor_id" name="proveedor_id">
+            {% for proveedor in proveedores %}
+            <option value="{{proveedor.id}}">{{proveedor.nombre}}</option>
+            {% endfor %}
+          </select>
+            </div>
+            <div class="col-2">
+                <a href="/" type="button" class="btn btn-primary mt-4">Agregar<i class="bi bi-person-plus-fill icon-white"></i></a>
+              </div>
+      </div>
+    <button type="submit" class="btn btn-primary">Agregar</button>
+  </form>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo tipo de materia</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form method="POST" action="/agregarTipoMateria">
+                <div class="form-group">
+                  <label for="tipoMateriaPrimaNombre" class="col-form-label">tipo de materia:</label>
+                  <input type="text" class="form-control" id="tipoMateriaPrimaNombre" name="tipoMateriaPrimaNombre">
+                </div>
+                <div class="form-group">
+                    <label for="UnidadMedidaMateria" class="col-form-label">Unidad de medidad:</label>
+                    <input type="text" class="form-control" id="UnidadMedidaMateria" name="UnidadMedidaMateria">
+                </div>
+                <button type="submit" class="btn btn-primary">Agregar Tipo</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}

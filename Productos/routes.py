@@ -91,24 +91,42 @@ def modificarProducto():
 
     if request.method=='POST':
         try:
-            imagenR= request.files['image']
+            imagenR= request.files['imageM']
             imagen = base64.b64encode(imagenR.read())
-            print(imagen)
-            id=create_forms.id.data
-            product= db.session.query(Producto).filter(Producto.id==id).first()
-            product.id=create_forms.id.data
-            product.nombre=create_forms.nombre.data
-            product.descripcion=create_forms.descripcion.data
-            product.stock=create_forms.stock.data
-            product.altura=create_forms.altura.data
-            product.ancho=create_forms.ancho.data
-            product.largo=create_forms.largo.data
-            product.subtotal=create_forms.subtotal.data
-            product.total=create_forms.total.data
-            db.session.add(product)
-            db.session.commit()
-            logger.info('Producto modificado por '+current_user.name+' con id '+str(current_user.id))
-            return redirect(url_for('productos.profile'))
+            #print(len(str(imagen)))
+            if len(str(imagen)) < 4:
+                id=create_forms.id.data
+                product= db.session.query(Producto).filter(Producto.id==id).first()
+                product.id=create_forms.id.data
+                product.nombre=create_forms.nombre.data
+                product.descripcion=create_forms.descripcion.data
+                product.stock=create_forms.stock.data
+                product.altura=create_forms.altura.data
+                product.ancho=create_forms.ancho.data
+                product.largo=create_forms.largo.data
+                product.subtotal=create_forms.subtotal.data
+                product.total=create_forms.total.data
+                db.session.add(product)
+                db.session.commit()
+                logger.info('Producto modificado por '+current_user.name+' con id '+str(current_user.id))
+                return redirect(url_for('productos.profile'))
+            else:
+                id=create_forms.id.data
+                product= db.session.query(Producto).filter(Producto.id==id).first()
+                product.id=create_forms.id.data
+                product.nombre=create_forms.nombre.data
+                product.descripcion=create_forms.descripcion.data
+                product.stock=create_forms.stock.data
+                product.altura=create_forms.altura.data
+                product.ancho=create_forms.ancho.data
+                product.largo=create_forms.largo.data
+                product.subtotal=create_forms.subtotal.data
+                product.total=create_forms.total.data
+                product.image=imagen
+                db.session.add(product)
+                db.session.commit()
+                logger.info('Producto modificado por '+current_user.name+' con id '+str(current_user.id))
+                return redirect(url_for('productos.profile'))
         except Exception as e:    
             logger.error(e)
 

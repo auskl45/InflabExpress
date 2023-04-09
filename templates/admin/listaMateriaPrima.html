@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h4>Lista de materias primas</h4>
+  
+  <div class="container">
+    <div class="row">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr class="tr-head">
+        <th>id</th>
+        <th>tipo de materia</th>
+        <th>nombre</th>
+        <th>color</th>
+        <th>costo</th>
+        <th>stock</th>
+        <th>Proveedor</th>
+        <th>modificar</th>
+        <th>eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for materia_prima in materiaPrimas  %}
+        <tr>
+          <td>{{materia_prima.id}}</td>
+          {% for tipomateria in tipoMateriaPrima %}
+            {% if tipomateria.id == materia_prima.tipoMateriaPrima_id %}
+              <td>{{ tipomateria.tipo }}</td>
+            {% endif %}
+          {% endfor %}
+          <td>{{ materia_prima.nombre }}</td>
+          <td>{{ materia_prima.color }}</td>
+          <td>{{ materia_prima.costo }}</td>
+          <td>{{ materia_prima.stock }}</td>
+          {% for proveedores in proveedor %}
+            {% if proveedores.id == materia_prima.proveedor_id %}
+              <td>{{ proveedores.nombre }}</td>
+            {% endif %}
+          {% endfor %}
+          <td><a href="modificarMateriaPrima?id={{materia_prima.id}}" class="btn btn-warning">
+            <i class="icon-warning icon-white"></i>Modificar
+        </a></td>
+          <td>
+            <a href="eliminarMateriaPrima?id={{materia_prima.id}}" class="btn btn-danger">
+              <i class="icon-remove icon-white"></i>Eliminar
+          </a>
+          </td>
+
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<div class="row">
+  <a href="agregar_materia_prima" class="btn btn-success">
+    <i class="icon-warning icon-white"></i>Agregar
+  </a>
+</div>
+</div>
+{% endblock %}

@@ -10,10 +10,11 @@
         <thead>
             <tr class="tr-head">
                 <th>id</th>
-                <th>Producto</th>
+                <th>Inflabe</th>
+                <th>Imagen</th>
                 <th>Precio</th>
-                <th>Marca</th>
-                <th>Cantidad</th>
+                <th>Stock</th>
+                <th>Medidas</th>
                 <th>Modificar</th>
                 <th>Eliminar</th>
             </tr>
@@ -22,10 +23,11 @@
             {%for row in productos%}
             <tr>
                 <td>{{row.id}}</td>
-                <td>{{row.nombreProducto}}</td>
-                <td>{{row.precio}}</td>
-                <td>{{row.marca}}</td>
-                <td>{{row.cantidad}}</td>
+                <td>{{row.nombre}}</td>
+                 <td><img src="data:image/png;base64,{{row.image}}" style="width: 150px;height: auto;"></td>
+                <td>{{row.total}}</td>
+                <td>{{row.stock}}</td>
+                <td>{{row.largo}}x{{row.ancho}}x{{row.altura}}</td>
               
                 <td><a href="modificarProducto?id={{row.id}}" class="btn btn-warning">
                     <i class="icon-warning icon-white"></i>Modificar

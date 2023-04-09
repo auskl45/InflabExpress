@@ -5,32 +5,53 @@
 
   <div class="container mt-4">
    <div class="row">
-       <form name="sent" action="/modificarProducto" id="form1" method="POST">
-        <div class="row control-group">
-            <div class="form-group col-xs-12 float-label-form-group controls d-none" >
-                {{render_field(form.id,class='form-control')}}
+       <form name="sent" action="/modificarProducto" id="form1" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            {{ form.id.label(class="control-label")}}
+            {{ form.id(class="form-control") }}
+          </div>
+        <div class="form-group">
+            {{ form.nombre.label(class="control-label")}}
+            {{ form.nombre(class="form-control") }}
+          </div>
+            <div class="form-group">
+                {{ form.descripcion.label(class="control-label") }}
+                {{ form.descripcion(class="form-control") }}
             </div>
-        </div>
-           <div class="row control-group">
-               <div class="form-group col-xs-12 float-label-form-group controls">
-                   {{render_field(form.nombreProducto,class='form-control')}}
-               </div>
-           </div>
-           <div class="row control-group">
-               <div class="form-group col-xs-12 float-label-form-group controls">
-                   {{render_field(form.precio,class='form-control')}}
-               </div>
-           </div>
-           <div class="row control-group">
-               <div class="form-group col-xs-12 float-label-form-group controls">
-                   {{render_field(form.marca,class='form-control')}}
-               </div>
-           </div>
-           <div class="row control-group">
-            <div class="form-group col-xs-12 float-label-form-group controls">
-                {{render_field(form.cantidad,class='form-control')}}
+            <div class="form-group">
+                {{ form.stock.label(class="control-label") }}
+                {{ form.stock(class="form-control") }}
             </div>
-        </div>
+            <div class="form-group">
+                {{ form.altura.label(class="control-label") }}
+                {{ form.altura(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.ancho.label(class="control-label") }}
+                {{ form.ancho(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.largo.label(class="control-label") }}
+                {{ form.largo(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.subtotal.label(class="control-label") }}
+                {{ form.subtotal(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.total.label(class="control-label") }}
+                {{ form.total(class="form-control") }}
+            </div>
+            <div class="row">
+                <div class="form-group col-6">
+                  <label for="imageM">Cambiar imagen del producto:</label>
+                  <input type="file" class="form-control-file" id="imageM" name="imageM" accept="image/*">
+                </div>
+                <div class="form-group col-6">
+                  <label for="image">Imagen actual:</label>
+                  <img src="data:image/png;base64,{{form.image.data}}" alt="imagen actual" style="width: auto; height: 100px;">
+              </div>
+              </div>
            <input type="submit" id="modificar" class="btn btn-warning" name="modificar" value="Modificar"/>
            <a href="profile" class="btn btn-success"> Cancelar</a>
        </form>
