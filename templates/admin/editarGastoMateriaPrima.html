@@ -12,8 +12,8 @@
     <div class="form-group">
         <label for="inflable_id">inflable:</label>
         <select class="form-control" id="inflable_id" name="inflable_id">
-            {% for inflable in inflables %}
-            {% if inflable.id == form.producto_id %}
+           {% for inflable in inflables %}
+            {% if inflable.id == form.producto_id.data %}
             <option value="{{inflable.id}}" selected>{{inflable.nombre}}</option>
             {% else %}
             <option value="{{inflable.id}}">{{inflable.nombre}}</option>
@@ -25,7 +25,7 @@
             <label for="materiaPrima_id">materia prima:</label>
             <select class="form-control" id="materiaPrima_id" name="materiaPrima_id">
                 {% for materiaPrima in materiaPrimas %}
-                {% if materiaPrima.id == form.materiaPrima_id %}
+                {% if materiaPrima.id == form.materiaPrima_id.data %}
                 <option value="{{materiaPrima.id}}" selected>{{materiaPrima.nombre}}</option>
                 {% else %}
                 <option value="{{materiaPrima.id}}">{{materiaPrima.nombre}}</option>

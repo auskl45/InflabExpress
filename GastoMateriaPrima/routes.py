@@ -69,8 +69,8 @@ def modificarGastoMateria():
         form.id.data = gastoMateriaPrima.id
         form.cantidad.data = gastoMateriaPrima.cantidad
         form.total.data = gastoMateriaPrima.costo
-        form.producto_id.data = gastoMateriaPrima.producto_id
-        form.materiaPrima_id.data = gastoMateriaPrima.materiaPrima_id
+        form.producto_id.data = int(gastoMateriaPrima.producto_id)
+        form.materiaPrima_id.data = int(gastoMateriaPrima.materiaPrima_id)
         print(form.id.data)
         print(form.cantidad.data)
         print(form.total.data)
