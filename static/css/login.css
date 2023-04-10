@@ -42,3 +42,11 @@
         text-align: right;
         width: 100px;
       }
+
+      /* diseño para el modal step*/
+      .sw-btn-next{
+background-color: #4abaa5;
+border-color: white;
+      }
+     
+    

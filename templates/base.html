@@ -16,6 +16,7 @@
     <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet" type="text/css" /> 
     <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_dots.min.css" rel="stylesheet" type="text/css" /> 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"></script> 
+  
   </head>
 <body style="background-color: #e9ecef;">
       <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #4abaa5;">
@@ -101,7 +102,46 @@
       </nav>
             <div class="container">
               <!-- Modal -->
-              <div class="container"> <!-- Modal --> <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> <div class="modal-dialog modal-lg modal-dialog-centered" role="document"> <div class="modal-content"> <div class="modal-header"> <h5 class="modal-title" id="exampleModalLabel">Proceso de compra</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> </div> <div class="modal-body"> <div id="smartwizard"> <ul> <li><a href="#step-1">Paso 1<br /><small>Informacion Personal</small></a></li> <li><a href="#step-2">Paso 2<br /><small>Domicilio</small></a></li> <li><a href="#step-3">Paso 3<br /><small>Informacion de pago</small></a></li> <li><a href="#step-4">Step 4<br /><small>Confirmar compra</small></a></li> </ul> <div> <div id="step-1"> <div class="row"> <div class="col-md-6"> <input type="text" class="form-control" placeholder="Usuario" required> </div> <div class="col-md-6"> <input type="text" class="form-control" placeholder="Correo" required> </div> </div> <div class="row mt-3">  </div> </div> <div id="step-2"> <div class="row"> <div class="col-md-6"> <input type="text" class="form-control" placeholder="Calle" required> </div> <div class="col-md-6"> <input type="text" class="form-control" placeholder="Ciudad" required> </div> </div> <div class="row mt-3"> <div class="col-md-6"> <input type="text" class="form-control" placeholder="Estado" required> </div> <div class="col-md-6"> <input type="text" class="form-control" placeholder="Pais" required> </div> </div> </div> <div id="step-3" class=""> <div class="row"> <div class="col-md-6"> <input type="text" class="form-control" placeholder="Numero de tarjeta" required> </div> <div class="col-md-6"> <input type="text" class="form-control" placeholder="Nombre de tarjeta habiente" required> </div> </div> <div class="row mt-3"> <div class="col-md-6"> <input type="text" class="form-control" placeholder="CVV" required> </div> <div class="col-md-6"> <input type="text" class="form-control" placeholder="Numero de telefono" required> </div> </div> </div> <div id="step-4" class=""> <div class="row"> <div class="col-md-12"> <span>Thanks For submitting your details with BBBootstrap.com. we will send you a confirmation email. We will review your details and revert back.</span> </div> </div> </div> </div> </div> </div> </div> </div> </div> </div>
+              <div class="container"> <!-- Modal --> <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> <div class="modal-dialog modal-lg modal-dialog-centered" role="document"> <div class="modal-content"> <div class="modal-header"> <h5 class="modal-title" id="exampleModalLabel">Proceso de compra</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> </div> <div class="modal-body"> <div id="smartwizard"> <ul> <li><a href="#step-1">Paso 1<br /><small>Informacion Personal</small></a></li> <li><a href="#step-2">Paso 2<br /><small>Domicilio</small></a></li> <li><a href="#step-3">Paso 3<br /><small>Informacion de pago</small></a></li> <li><a href="#step-4">Paso 4<br /><small>Confirmar compra</small></a></li> </ul> <div> <div id="step-1"> 
+                <p><strong>Pagina 1/4</strong></p>
+                <div class="row"> <div class="col-md-6"> 
+                  
+                  <input type="text" class="form-control" placeholder="Usuario" required> </div> <div class="col-md-6"> 
+                 
+                  <input type="text" class="form-control" placeholder="Correo" required> </div> </div> 
+                  <div class="row mt-3">  </div> </div> <div id="step-2"> 
+                    <p><strong>Pagina 2/4</strong></p>
+                    <div class="row">
+                      <div class="col-md-6"> <input type="text" class="form-control" placeholder="Calle" required> </div> <div class="col-md-6"> <input type="text" class="form-control" placeholder="Ciudad" required> </div> </div> <div class="row mt-3"> <div class="col-md-6"> <input type="text" class="form-control" placeholder="Estado" required> </div> <div class="col-md-6"> <input type="text" class="form-control" placeholder="Pais" required> </div> </div> </div> 
+                      <div id="step-3" class="">
+                        <p><strong>Pagina 3/4</strong></p>
+
+                        <div class="row"> <div class="col-md-6"> <input type="text" class="form-control" placeholder="Numero de tarjeta" required> </div> <div class="col-md-6"> <input type="text" class="form-control" placeholder="Nombre de tarjeta habiente" required> </div> </div> <div class="row mt-3"> <div class="col-md-6"> <input type="text" class="form-control" placeholder="CVV" required> </div> <div class="col-md-6"> <input type="text" class="form-control" placeholder="Numero de telefono" required> </div> </div> </div> 
+                  <div id="step-4" class=""> 
+                    <p><strong>Pagina 4/4</strong></p>
+                    <div class="row"> <div class="col-md-12"> 
+                    <p class="text-center  display-4">¿Desea realizar la compra?</p> 
+                    <div class="container-fluid h-100"> 
+                      <div class="row w-100 align-items-center">
+                        <div class="col text-center">
+                          <button id="btnAceptar"class="btn btn-success text-white regular-button mr-4"> Aceptar </button>
+                          <button id="btnCancelar"class="btn btn-danger text-white regular-button"> Cancelar </button>
+
+                        </div>	
+                      </div>
+                  
+                  
+                    </div>
+                        </div> 
+                      </div> 
+                    </div> 
+                  </div> 
+                </div> 
+              </div> 
+            </div> 
+            </div> 
+          </div> 
+          </div>
                {% block content %}
                {% endblock %}
             </div>
