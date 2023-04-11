@@ -5,69 +5,54 @@
     <div class="card mr-5 mt-4" style="width: 18rem;">
         <img class="card-img-top " style="height: 16rem;" src="https://images.photowall.com/products/54675/surfboard.jpg?h=699&q=85" alt="Card image cap">
         <div class="card-body"  >
-          <h5 class="card-title">{{row.nombreProducto}}</h5>
-          <p class="text-danger">!Solo quedan {{row.cantidad}}!</p>
-
+          <h5 class="card-title">{{row.nombre}}</h5>
+          <p class="text-danger">!Solo quedan {{row.stock}}!</p>
+         <div class="row container">
+            <p >alt {{row.altura}} cm | anch {{row.ancho}} cm</p>
+          </div>
           <div class="row container">
-            <p class="card-text mr-2">{{row.marca}} </p>|
-            <p class="ml-2">MXN ${{row.precio}}</p>
+            <p >MXN ${{row.total}}</p>
           </div>
           <div class="row ">
-          <button class="btn text-white btn-warning ml-3 col-4" onclick="agregarCanasta('{{row.id}}','{{row.nombreProducto}}','{{row.cantidad}}','{{row.precio}}')" id="btnAdd"><i class="bi bi-cart-dash"></i> añadir</button>
+          <button class="btn text-white btn-warning ml-3 col-4" onclick="agregarCanasta('{{row.id}}','{{row.nombre}}','{{row.stock}}','{{row.total}}')" id="btnAdd"><i class="bi bi-cart-dash"></i> añadir</button>
         </div>
         </div>
       </div>
     {%endfor%}
     </div>
     <script>
-$(document).ready(function(){
- });
- var cantidadAñadido=0;
+var cantidadAñadido=0;
  var carrito=[];
  var total=0;
- function agregarCanasta(id,nombreProducto,cantidad,precio){
-  const popUpCarrito = document.getElementById("popUpCarrito");
-var content = '';  
-        var encontrado = carrito.some(function(producto) {return producto.id === id;});
-if (!encontrado) {
-  carrito.push({
-    id:id,
-    precio:parseInt(precio),
-    nombreProducto:nombreProducto,
-    cantidadAñadido:0,
-    cantidadMaxima:cantidad
-  })}
-  let index = carrito.findIndex(producto => producto.id === id);
-  // Verificar si se encontró el objeto en el array
-  if (index !== -1) {
-  if(carrito[index].cantidadAñadido<carrito[index].cantidadMaxima){
-    carrito[index].cantidadAñadido=carrito[index].cantidadAñadido+1;  
-    total+=carrito[index].precio;
-    cantidadAñadido++;
-    $( "#txtPopupCantidad" ).empty();
-        $( "#txtPopupCantidad" ).append( document.createTextNode( cantidadAñadido ));
-  }
-  }
-$.each(carrito, function(index, value) {
-  content +='<label for="total">'+carrito[index].nombreProducto+'</label>' 
-  content +=  '<div class="row mt-2 mb-2"><button onclick="agregar('+carrito[index].id+')" class="btn btn-outline-warning ml-4">+</button>';
-  content+='<div class="col-4 "><input type="text" value="'+carrito[index].cantidadAñadido+'" class=" text-center form-control" aria-label="Recipientusername with two button addons" aria-describedby="button-addon1" readonly></div>';
-  content+='<button onclick="quitar('+carrito[index].id+')" class="btn btn-outline-warning ">-</button></div>';
-});
-content+='<label for="total">Total:</label>$<input type="text" class="subtotal"id="subtotal" readonly value=" '+total+' ""></div>'
-content +=  '<div class="container"><button type="button" id="btnComprar" class="btn text-white btn-block mt-3" data-toggle="modal" data-target="#exampleModal" style="background-color: #4abaa5;">comprar</button></div>';
-$(popUpCarrito).attr('data-content', content);
-$(popUpCarrito).popover('show');    
-  }
-$(document).on('click','#btnComprar',function(){
-     $(popUpCarrito).popover('hide');  
-})
-$( "#btnCancelar" ).click(function() {
+$(document).ready(function(){
+  $( "#btnCancelar" ).click(function() {
   $('#exampleModal').modal('hide')
 });
 $( "#btnAceptar" ).click(function() {
   $('#exampleModal').modal('hide')
-  
+ let content=""
+
+  fetch('/compraProductos', {
+  method: 'POST', // or 'PUT'
+  body: JSON.stringify(carrito), // data can be `string` or {object}!
+  headers:{
+    'Content-Type': 'application/json'
+  }
+}).then(res => res.json())
+.catch(error => console.error('Error:', error))
+.then(response => 
+$("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
+      $("#success-alert").slideUp(500);
+    }),
+
+    cantidadAñadido=0,
+    carrito=[],
+    total=0,
+    $( "#txtPopupCantidad" ).empty(),
+    content =  "<span class='text-white badge rounded-pill badge-notification bg-danger'>0</span> articulos añadidos",
+  $("#btnComprar").remove(),
+  $(popUpCarrito).attr('data-content', content),
+    );  
 });
 
   $('#smartwizard').smartWizard({
@@ -100,10 +85,58 @@ $( "#btnAceptar" ).click(function() {
         // },
                  
             });
+$(document).on('click','#btnComprar',function(){
+     $(popUpCarrito).popover('hide');  
+     var content="";
+     carrito.forEach(element => {
+      content+= "<p>"+element.nombreProducto+" x  "+element.cantidadAñadido+" $"+element.cantidadAñadido*element.precio+"</p>"
+});
+content+='<div class="mb-2"><label for="total">Total:</label>$<input type="text" class="subtotal"id="subtotal" readonly value=" '+total+' ""> <label for="total" class="ml-3">Anticipo:</label>$<input type="text" class="subtotal"id="subtotal" readonly value=" '+total*0.50+' ""></div>'
+
+$( "#detalleCompra" ).html(content);
+})
+
+
+ });
+ function agregarCanasta(id,nombreProducto,cantidad,precio){
+  const popUpCarrito = document.getElementById("popUpCarrito");
+var content = '';  
+var encontrado = carrito.some(function(producto) {return producto.idProducto === id;});
+if (!encontrado) {
+  carrito.push({
+    idUsuario:parseInt('{{current_user.id}}'),
+    idProducto:id,
+    precio:parseInt(precio),
+    nombreProducto:nombreProducto,
+    cantidadAñadido:0,
+    cantidadMaxima:cantidad
+  })}
+  let index = carrito.findIndex(producto => producto.idProducto === id);
+  // Verificar si se encontró el objeto en el array
+  if (index !== -1) {
+  if(carrito[index].cantidadAñadido<carrito[index].cantidadMaxima){
+    carrito[index].cantidadAñadido=carrito[index].cantidadAñadido+1;  
+    total+=carrito[index].precio;
+    cantidadAñadido++;
+    $( "#txtPopupCantidad" ).empty();
+        $( "#txtPopupCantidad" ).append( document.createTextNode( cantidadAñadido ));
+  }
+  }
+$.each(carrito, function(index, value) {
+  content +='<label for="total">'+carrito[index].nombreProducto+'</label>' 
+  content +=  '<div class="row mt-2 mb-2"><button onclick="agregar('+carrito[index].idProducto+')" class="btn btn-outline-warning ml-4">+</button>';
+  content+='<div class="col-4 "><input type="text" value="'+carrito[index].cantidadAñadido+'" class=" text-center form-control" aria-label="Recipientusername with two button addons" aria-describedby="button-addon1" readonly></div>';
+  content+='<button onclick="quitar('+carrito[index].idProducto+')" class="btn btn-outline-warning ">-</button></div>';
+});
+content+='<label for="total">Total:</label>$<input type="text" class="subtotal"id="subtotal" readonly value=" '+total+' ""></div>'
+content +=  '<div class="container"><button type="button" id="btnComprar" class="btn text-white btn-block mt-3" data-toggle="modal" data-target="#exampleModal" style="background-color: #4abaa5;">comprar</button></div>';
+$(popUpCarrito).attr('data-content', content);
+$(popUpCarrito).popover('show');    
+  }
 function agregar(id){
   const popUpCarrito = document.getElementById("popUpCarrito");
 var content = '';
-let index = carrito.findIndex(producto => producto.id==id);
+let index = carrito.findIndex(producto => producto.idProducto==id);
 // Verificar si se encontró el objeto en el array
 if (index !== -1) {
   if(carrito[index].cantidadAñadido<carrito[index].cantidadMaxima){
@@ -117,9 +150,9 @@ if (index !== -1) {
 $.each(carrito, function(index, value) {
 
   content +='<label for="total">'+carrito[index].nombreProducto+'</label>' 
-  content +=  '<div class="row mt-2 mb-2"><button onclick="agregar('+carrito[index].id+')" class="btn btn-outline-warning ml-4">+</button>';
+  content +=  '<div class="row mt-2 mb-2"><button onclick="agregar('+carrito[index].idProducto+')" class="btn btn-outline-warning ml-4">+</button>';
   content+='<div class="col-4 "><input type="text" value="'+carrito[index].cantidadAñadido+'" class=" text-center form-control" aria-label="Recipientusername with two button addons" aria-describedby="button-addon1" readonly></div>';
-  content+='<button onclick="quitar('+carrito[index].id+')" class="btn btn-outline-warning ">-</button></div>';
+  content+='<button onclick="quitar('+carrito[index].idProducto+')" class="btn btn-outline-warning ">-</button></div>';
 });
 content+='<label for="total">Total:</label>$<input type="text" class="subtotal"id="subtotal" readonly value=" '+total+' ""></div>'
 content +=  '<div class="container"><button type="button" id="btnComprar" class="btn text-white btn-block mt-3" data-toggle="modal" data-target="#exampleModal" style="background-color: #4abaa5;">comprar</button></div>';
@@ -132,7 +165,7 @@ $(popUpCarrito).popover('show');
 function quitar(id){
   const popUpCarrito = document.getElementById("popUpCarrito");
   var content = '';
-  let index = carrito.findIndex(producto => producto.id==id);
+  let index = carrito.findIndex(producto => producto.idProducto==id);
 // Verificar si se encontró el objeto en el array
 if (index !== -1) {
   if(carrito[index].cantidadAñadido>1){
@@ -154,14 +187,14 @@ if (index !== -1) {
     content =  "<span class='text-white badge rounded-pill badge-notification bg-danger'>0</span> articulos añadidos";
   $("#btnComprar").remove();
   $(popUpCarrito).attr('data-content', content);
-  $(popUpCarrito).popover('show');
-  $(popUpCarrito).popover('refresh');
+   $(popUpCarrito).popover('show');
+   $(popUpCarrito).popover('refresh');
   }
 $.each(carrito, function(index, value) {
   content +='<label for="total">'+carrito[index].nombreProducto+'</label>' 
- content +=  '<div class="row mt-2 mb-2"><button onclick="agregar('+carrito[index].id+')" class="btn btn-outline-warning ml-4">+</button>';
+ content +=  '<div class="row mt-2 mb-2"><button onclick="agregar('+carrito[index].idProducto+')" class="btn btn-outline-warning ml-4">+</button>';
  content+='<div class="col-4 "><input type="text" value="'+carrito[index].cantidadAñadido+'" class=" text-center form-control" aria-label="Recipientusername with two button addons" aria-describedby="button-addon1" readonly></div>';
- content+='<button onclick="quitar('+carrito[index].id+')" class="btn btn-outline-warning ">-</button></div>';
+ content+='<button onclick="quitar('+carrito[index].idProducto+')" class="btn btn-outline-warning ">-</button></div>';
 });
 content+='<label for="total">Total:</label>$<input type="text" class="subtotal"id="subtotal" readonly value=" '+total+' ""></div>'
 content +=  '<div class="container"><button type="button" id="btnComprar" class="btn text-white btn-block mt-3" data-toggle="modal" data-target="#exampleModal" style="background-color: #4abaa5;">comprar</button></div>';

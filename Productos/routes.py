@@ -1,9 +1,10 @@
-from flask import Blueprint, render_template,flash
+from datetime import datetime
+from flask import Blueprint, jsonify, render_template,flash
 from flask_security import login_required, current_user
 from flask_security.decorators import roles_required
 import logging
 from forms import UseForm
-from model import Producto,db
+from model import Producto,Pedido,db
 from flask import request
 from flask import redirect, render_template, url_for
 
@@ -37,6 +38,25 @@ def profile():
 def productosMenu():
         productosAll=Producto.query.all()
         return render_template('user/productos.html',productos=productosAll)
+
+@productos.route('/compraProductos',methods=['GET','POST'])
+@login_required
+@roles_required('user')
+def compraProductos():
+        jsdata = request.get_json()
+        for data in jsdata:
+            totalPrecio=data['precio']*data['cantidadAñadido']
+            anticipo= totalPrecio*0.50
+            pedido= Pedido(cantidad=data['cantidadAñadido'],
+                         Totalprecio=totalPrecio,
+                         anticipo=anticipo,
+                         estatusPedido="activo",
+                         fechaCreacion=datetime.now().strftime('%Y-%m-%d %H:%M:%S') ,
+                         producto_id=data['idProducto'],
+                         user_id=data['idUsuario'])
+            db.session.add(pedido)
+            db.session.commit()
+        return jsonify({"success":True})
 
 @productos.route("/agregarProducto",methods=['GET','POST'])
 @login_required

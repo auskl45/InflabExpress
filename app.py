@@ -1,6 +1,4 @@
 from flask import Flask, render_template
-from Alumnos.routes import alumnos
-from Maestros.routes import maestros
 from Auth.routes import auth
 from Productos.routes import productos
 from flask_security import current_user,Security, SQLAlchemyUserDatastore
@@ -23,8 +21,6 @@ def register():
     return render_template('/security/register.html',current_user=current_user)
 
 
-app.register_blueprint(alumnos)
-app.register_blueprint(maestros)
 app.register_blueprint(auth)
 app.register_blueprint(productos)
 

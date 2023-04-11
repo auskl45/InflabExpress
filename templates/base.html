@@ -100,15 +100,25 @@
             {% endif %}
         </div>
       </nav>
+      <ul class="navbar-nav m-4">
+              <div class="flex-row ml-md-auto d-none d-md-flex">
+                <div class="alert alert-success" id="success-alert">
+                  <button type="button" class="close" data-dismiss="alert">x</button>
+                  <div class="row"><strong>¡Compra realizada con exito! </strong> ver compra en pedidos
+                  </div>
+                </div>
+            </div>
+      </ul>
             <div class="container">
               <!-- Modal -->
               <div class="container"> <!-- Modal --> <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> <div class="modal-dialog modal-lg modal-dialog-centered" role="document"> <div class="modal-content"> <div class="modal-header"> <h5 class="modal-title" id="exampleModalLabel">Proceso de compra</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> </div> <div class="modal-body"> <div id="smartwizard"> <ul> <li><a href="#step-1">Paso 1<br /><small>Informacion Personal</small></a></li> <li><a href="#step-2">Paso 2<br /><small>Domicilio</small></a></li> <li><a href="#step-3">Paso 3<br /><small>Informacion de pago</small></a></li> <li><a href="#step-4">Paso 4<br /><small>Confirmar compra</small></a></li> </ul> <div> <div id="step-1"> 
                 <p><strong>Pagina 1/4</strong></p>
                 <div class="row"> <div class="col-md-6"> 
                   
-                  <input type="text" class="form-control" placeholder="Usuario" required> </div> <div class="col-md-6"> 
+                  <input type="text" class="form-control" value="{{current_user.name}}" placeholder="Usuario" required> </div> 
+                  <div class="col-md-6"> 
                  
-                  <input type="text" class="form-control" placeholder="Correo" required> </div> </div> 
+                  <input type="text" class="form-control" value="{{current_user.email}}"placeholder="Correo" required> </div> </div> 
                   <div class="row mt-3">  </div> </div> <div id="step-2"> 
                     <p><strong>Pagina 2/4</strong></p>
                     <div class="row">
@@ -116,17 +126,22 @@
                       <div id="step-3" class="">
                         <p><strong>Pagina 3/4</strong></p>
 
-                        <div class="row"> <div class="col-md-6"> <input type="text" class="form-control" placeholder="Numero de tarjeta" required> </div> <div class="col-md-6"> <input type="text" class="form-control" placeholder="Nombre de tarjeta habiente" required> </div> </div> <div class="row mt-3"> <div class="col-md-6"> <input type="text" class="form-control" placeholder="CVV" required> </div> <div class="col-md-6"> <input type="text" class="form-control" placeholder="Numero de telefono" required> </div> </div> </div> 
+                        <div class="row"> <div class="col-md-6"> 
+                          <input type="text" class="form-control" placeholder="Numero de tarjeta" required> 
+                        </div> <div class="col-md-6"> 
+                          <input type="text" class="form-control" placeholder="Nombre de tarjeta habiente" required>
+                         </div> </div> <div class="row mt-3"> <div class="col-md-6"> <input type="text" class="form-control" placeholder="CVV" required> </div> <div class="col-md-6"> <input type="text" class="form-control" placeholder="Numero de telefono" required> </div> </div> </div> 
                   <div id="step-4" class=""> 
                     <p><strong>Pagina 4/4</strong></p>
                     <div class="row"> <div class="col-md-12"> 
-                    <p class="text-center  display-4">¿Desea realizar la compra?</p> 
+                    <p class="text-center  display-4">¿Desea realizar el anticipo?</p> 
                     <div class="container-fluid h-100"> 
                       <div class="row w-100 align-items-center">
                         <div class="col text-center">
+                          <p>Para realizar la compra debe realizar el pago del anticipo que es el 50% del total de la compra.</p>
+                          <div id="detalleCompra"></div>
                           <button id="btnAceptar"class="btn btn-success text-white regular-button mr-4"> Aceptar </button>
                           <button id="btnCancelar"class="btn btn-danger text-white regular-button"> Cancelar </button>
-
                         </div>	
                       </div>
                   
@@ -146,6 +161,8 @@
                {% endblock %}
             </div>
   <script>
+     $('#success-alert').hide()
+
               $(function () {
   $('[data-toggle="popover"]').popover({
       container: 'body',
