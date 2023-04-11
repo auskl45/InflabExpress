@@ -32,9 +32,9 @@ $( "#btnAceptar" ).click(function() {
   $('#exampleModal').modal('hide')
  let content=""
 
-  fetch('/compraProductos', {
-  method: 'POST', // or 'PUT'
-  body: JSON.stringify(carrito), // data can be `string` or {object}!
+  fetch('/realizarPedido', {
+  method: 'POST', 
+  body: JSON.stringify(carrito), 
   headers:{
     'Content-Type': 'application/json'
   }

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="pedidos">
+  </div>
+  <script>
+    var content=""
+     fetch('/mostrarPedidos/{{current_user.id}}', {
+  method: 'GET', // or 'PUT'
+  headers:{
+    'Content-Type': 'application/json'
+  }
+}).then(res => res.json())
+.catch(error => console.error('Error:', error))
+.then(response => {
+response.map(function(item) { 
+  content+=" <div class='row mb-3'><div class='col-sm-12'><div class='card'><div class='card-body'><h5 class='card-title'>Special title treatment</h5>" ;
+content+="<p class='card-text'>anticipo "+item.anticipo+" | cantidad "+item.cantidad+" | precio "+item.precioTotal+"</p></div>"
+content+="</div></div></div>"
+ })
+$( "#pedidos" ).html(content)
+}
+
+)
+  </script>
+{% endblock %}

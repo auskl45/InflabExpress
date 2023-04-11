@@ -46,17 +46,22 @@
             {% else  %}
 
             
-            <li class="nav-item">
+            <li class="nav-item ml-3">
               <a href="{{ url_for('productos.profile') }}" class="nav-link font-weight-bold text-white">
                   Perfil de Usuario
              </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item ml-3">
               <a href="{{ url_for('productos.productosMenu') }}" class="nav-link font-weight-bold text-white">
                   Menu
              </a>
-            </li>       
+            </li>   
+            <li class="nav-item ml-3">
+              <a href="{{ url_for('pedidos.pedidosMenu') }}" class="nav-link font-weight-bold text-white">
+                  Mis Pedidos
+             </a>
+            </li>    
             {% endif %}
 
             {% endif %}
@@ -82,14 +87,14 @@
           <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
             {% if not admin %}
           
-            <li  id="popUpCarrito" style="background-color: #4abaa5; right: 0;"class="btn  text-white" data-toggle="popover" data-content="<span class='text-white badge rounded-pill badge-notification bg-danger'>0</span> articulos añadidos" data-placement="bottom" title=" Cesta ">
+            <li  id="popUpCarrito" style="background-color: #4abaa5; right: 0;"class="btn  text-white mr-3" data-toggle="popover" data-content="<span class='text-white badge rounded-pill badge-notification bg-danger'>0</span> articulos añadidos" data-placement="bottom" title=" Cesta ">
               <span id="txtPopupCantidad" class="badge rounded-pill badge-notification bg-danger"></span>  
               <i class="bi bi-cart-dash"></i>
             </li>
 
             {% endif %}
           <li class="nav-item">
-            <a href="{{ url_for('auth.logout') }}" class="nav-link font-weight-bold text-white">
+            <a href="{{ url_for('auth.logout') }}" class="nav-link font-weight-bold text-white mr-3">
             <i class="bi bi-box-arrow-right"></i>              
             </a>
            </li>
