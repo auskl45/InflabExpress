@@ -2,7 +2,7 @@ from datetime import datetime
 from flask import jsonify, redirect, render_template, request, url_for
 from flask import Blueprint, render_template
 from flask_security import login_required, current_user
-from model import Pedido,db
+from model import Pedido,Producto,db
 from flask_security.decorators import roles_required
 pedidos = Blueprint('pedidos',__name__)
 
@@ -36,6 +36,7 @@ def mostrarPedidos(id):
 def realizarPedido():
         jsdata = request.get_json()
         for data in jsdata:
+            
             totalPrecio=data['precio']*data['cantidadAñadido']
             anticipo= totalPrecio*0.50
             pedido= Pedido(cantidad=data['cantidadAñadido'],
@@ -46,5 +47,10 @@ def realizarPedido():
                          producto_id=data['idProducto'],
                          user_id=data['idUsuario'])
             db.session.add(pedido)
+            db.session.commit()
+            stock=int(data['cantidadMaxima'])-data['cantidadAñadido']
+            product= db.session.query(Producto).filter(Producto.id==data['idProducto']).first()
+            product.stock=stock
+            db.session.add(product)
             db.session.commit()
         return jsonify({"success":True})

@@ -114,6 +114,15 @@
                 </div>
             </div>
       </ul>
+      <ul class="navbar-nav m-4">
+        <div class="flex-row ml-md-auto d-none d-md-flex">
+          <div class="alert alert-danger" id="danger-alert">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <div class="row"><strong>¡Ya no hay articulos! </strong> 
+            </div>
+          </div>
+      </div>
+</ul>
             <div class="container">
               <!-- Modal -->
               <div class="container"> <!-- Modal --> <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> <div class="modal-dialog modal-lg modal-dialog-centered" role="document"> <div class="modal-content"> <div class="modal-header"> <h5 class="modal-title" id="exampleModalLabel">Proceso de compra</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> </div> <div class="modal-body"> <div id="smartwizard"> <ul> <li><a href="#step-1">Paso 1<br /><small>Informacion Personal</small></a></li> <li><a href="#step-2">Paso 2<br /><small>Domicilio</small></a></li> <li><a href="#step-3">Paso 3<br /><small>Informacion de pago</small></a></li> <li><a href="#step-4">Paso 4<br /><small>Confirmar compra</small></a></li> </ul> <div> <div id="step-1"> 
@@ -167,6 +176,8 @@
             </div>
   <script>
      $('#success-alert').hide()
+     $('#danger-alert').hide()
+
 
               $(function () {
   $('[data-toggle="popover"]').popover({

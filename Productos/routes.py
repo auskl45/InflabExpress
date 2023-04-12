@@ -29,7 +29,32 @@ def profile():
 
     else:
         admin=False
-        return render_template('user/profile.html',name=current_user.name,admin=admin)    
+        return render_template('user/profile.html',name=current_user.name,admin=admin)  
+
+@productos.route('/mostrarProductos')
+@login_required
+@roles_required('user')
+def mostrarProductos():
+        productosAll=Producto.query.all()
+        pedidos_list = []
+        for pedido in productosAll:
+            pedido_dict = {
+                'id': pedido.id,
+                'nombre': pedido.nombre,
+                'descripcion': pedido.descripcion,
+                'stock': pedido.stock,
+                'altura': pedido.altura,
+                'ancho': pedido.ancho,
+                'subtotal': pedido.subtotal,
+                'total': pedido.total,
+                # add more attributes as needed
+            }
+        
+            pedidos_list.append(pedido_dict)
+        print(pedidos_list)
+        return jsonify(pedidos_list)
+        
+        #return render_template('user/productos.html',productos=productosAll)  
 
 @productos.route('/productosMenu')
 @login_required

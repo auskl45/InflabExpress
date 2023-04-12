@@ -6,7 +6,11 @@
         <img class="card-img-top " style="height: 16rem;" src="https://images.photowall.com/products/54675/surfboard.jpg?h=699&q=85" alt="Card image cap">
         <div class="card-body"  >
           <h5 class="card-title">{{row.nombre}}</h5>
+          {% if row.stock == 0 %}
+          <p class="text-danger">!Producto agotado!</p>
+          {%else%}
           <p class="text-danger">!Solo quedan {{row.stock}}!</p>
+          {%endif%}
          <div class="row container">
             <p >alt {{row.altura}} cm | anch {{row.ancho}} cm</p>
           </div>
@@ -20,11 +24,34 @@
       </div>
     {%endfor%}
     </div>
+    <!-- <div id="productos">
+    </div> -->
     <script>
 var cantidadAñadido=0;
  var carrito=[];
  var total=0;
 $(document).ready(function(){
+//   let content="";
+//   fetch('/mostrarProductos', {
+//   method: 'GET', // or 'PUT'
+//   headers:{
+//     'Content-Type': 'application/json'
+//   }
+// }).then(res => res.json())
+// .catch(error => console.error('Error:', error))
+// .then(response => {
+// response.map(function(item) { 
+//   content+='<div class="card mr-5 mt-4" style="width: 18rem;"><img class="card-img-top " style="height: 16rem;" src="https://images.photowall.com/products/54675/surfboard.jpg?h=699&q=85" alt="Card image cap">';
+//   content+='<div class="card-body"  ><h5 class="card-title">'+item.nombre+'</h5><p class="text-danger">!Solo quedan '+item.stock+'!</p><div class="row container">';
+//   content+='<p >alt '+item.altura+' cm | anch '+item.ancho+' cm</p></div><div class="row container"><p >MXN $'+item.total+'</p>';
+//   content+='</div><div class="row "><button class="btn text-white btn-warning ml-3 col-4" onclick="agregarCanasta('+item.id+','+item.nombre+','+item.stock+','+item.total+')" id="btnAdd"><i class="bi bi-cart-dash"></i> añadir</button></div></div></div>';
+//  })
+// $( "#productos" ).html(content)
+// }
+
+// )
+
+
   $( "#btnCancelar" ).click(function() {
   $('#exampleModal').modal('hide')
 });
@@ -40,19 +67,19 @@ $( "#btnAceptar" ).click(function() {
   }
 }).then(res => res.json())
 .catch(error => console.error('Error:', error))
-.then(response => 
+.then(response =>{
 $("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
       $("#success-alert").slideUp(500);
-    }),
-
-    cantidadAñadido=0,
-    carrito=[],
-    total=0,
-    $( "#txtPopupCantidad" ).empty(),
-    content =  "<span class='text-white badge rounded-pill badge-notification bg-danger'>0</span> articulos añadidos",
-  $("#btnComprar").remove(),
-  $(popUpCarrito).attr('data-content', content),
-    );  
+    })
+    window.location.reload();
+  //   cantidadAñadido=0
+  //   carrito=[]
+  //   total=0
+  //   $( "#txtPopupCantidad" ).empty()
+  //   content =  "<span class='text-white badge rounded-pill badge-notification bg-danger'>0</span> articulos añadidos",
+  // $("#btnComprar").remove()
+  // $(popUpCarrito).attr('data-content', content)
+  });  
 });
 
   $('#smartwizard').smartWizard({
@@ -102,7 +129,7 @@ $( "#detalleCompra" ).html(content);
   const popUpCarrito = document.getElementById("popUpCarrito");
 var content = '';  
 var encontrado = carrito.some(function(producto) {return producto.idProducto === id;});
-if (!encontrado) {
+if (!encontrado && cantidad>0) {
   carrito.push({
     idUsuario:parseInt('{{current_user.id}}'),
     idProducto:id,
@@ -111,6 +138,11 @@ if (!encontrado) {
     cantidadAñadido:0,
     cantidadMaxima:cantidad
   })}
+  if(cantidad==0){
+    $("#danger-alert").fadeTo(2000, 500).slideUp(500, function() {
+      $("#danger-alert").slideUp(500);
+    })
+  } 
   let index = carrito.findIndex(producto => producto.idProducto === id);
   // Verificar si se encontró el objeto en el array
   if (index !== -1) {
@@ -122,6 +154,8 @@ if (!encontrado) {
         $( "#txtPopupCantidad" ).append( document.createTextNode( cantidadAñadido ));
   }
   }
+  console.log(carrito)
+if(carrito[index].cantidadMaxima>0){
 $.each(carrito, function(index, value) {
   content +='<label for="total">'+carrito[index].nombreProducto+'</label>' 
   content +=  '<div class="row mt-2 mb-2"><button onclick="agregar('+carrito[index].idProducto+')" class="btn btn-outline-warning ml-4">+</button>';
@@ -131,7 +165,8 @@ $.each(carrito, function(index, value) {
 content+='<label for="total">Total:</label>$<input type="text" class="subtotal"id="subtotal" readonly value=" '+total+' ""></div>'
 content +=  '<div class="container"><button type="button" id="btnComprar" class="btn text-white btn-block mt-3" data-toggle="modal" data-target="#exampleModal" style="background-color: #4abaa5;">comprar</button></div>';
 $(popUpCarrito).attr('data-content', content);
-$(popUpCarrito).popover('show');    
+$(popUpCarrito).popover('show');  
+} 
   }
 function agregar(id){
   const popUpCarrito = document.getElementById("popUpCarrito");
