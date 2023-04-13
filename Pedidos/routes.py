@@ -16,18 +16,43 @@ def pedidosMenu():
 @login_required
 @roles_required('user')
 def mostrarPedidos(id):
-    pedidos = Pedido.query.filter(Pedido.user_id == id).all()
+    query = db.session.query(Pedido, Producto).join(
+        Producto, Pedido.producto_id == Producto.id
+    )
+    query = query.filter(Pedido.user_id == id)
+    # extract specific fields and convert the results to a list of dictionaries
+    pedidos = query.all()
     pedidos_list = []
-    for pedido in pedidos:
+    for pedido, producto in pedidos:
         pedido_dict = {
             'id': pedido.id,
+            'fechaPedido': pedido.fechaCreacion,
+            'nombreProducto': producto.nombre,
+            'altura': producto.altura,
+            'ancho': producto.ancho,
+            'largo': producto.largo,
             'cantidad': pedido.cantidad,
+            'estatusPedido': pedido.estatusPedido,
+            'precioUnitario': producto.total,
             'precioTotal': pedido.Totalprecio,
             'anticipo': pedido.anticipo,
             'estatusPedido': pedido.estatusPedido,
             # add more attributes as needed
         }
         pedidos_list.append(pedido_dict)
+        # print(pedido.id,producto.id,producto.stock)
+    # pedidos = Pedido.query.filter(Pedido.user_id == id).all()
+    # pedidos_list = []
+    # for pedido in pedidos:
+    #     pedido_dict = {
+    #         'id': pedido.id,
+    #         'cantidad': pedido.cantidad,
+    #         'precioTotal': pedido.Totalprecio,
+    #         'anticipo': pedido.anticipo,
+    #         'estatusPedido': pedido.estatusPedido,
+    #         # add more attributes as needed
+    #     }
+    #     pedidos_list.append(pedido_dict)
     return jsonify(pedidos_list)
 
 @pedidos.route('/realizarPedido',methods=['GET','POST'])

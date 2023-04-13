@@ -13,9 +13,40 @@
 .catch(error => console.error('Error:', error))
 .then(response => {
 response.map(function(item) { 
-  content+=" <div class='row mb-3'><div class='col-sm-12'><div class='card'><div class='card-body'><h5 class='card-title'>Special title treatment</h5>" ;
-content+="<p class='card-text'>anticipo "+item.anticipo+" | cantidad "+item.cantidad+" | precio "+item.precioTotal+"</p></div>"
-content+="</div></div></div>"
+  content += `
+  <div class="card shadow-lg p-3 mb-3 bg-white rounded" style="border: none;">
+  <div class="row no-gutters">
+    <div class="col-md-6">
+      <img src="../static/img/inflable4.jpg" class="card-img" alt="..." style="max-height: 100%;">
+    </div>
+    <div class="col-md-6">
+      <div class="card-body">
+
+    <div class="row ml-1" style="display: flex; justify-content: space-between; align-items: center;">
+  <h5 class="card-title text-warning font-weight-bold" style="margin-right: auto;">${item.nombreProducto}</h5>
+  <p class="font-weight-bold" style="margin-left: auto;">TOTAL: ${item.precioTotal} $MXN</p>
+</div>
+
+<div class="row ml-1" style="display: flex; justify-content: space-between; align-items: center;">
+  <p class="card-text text-muted" style="margin-right: auto;">${item.precioUnitario} $MXN  <small class="text-muted">x ${item.cantidad}</small></p>
+ <p class="card-text text-muted"><small class="text-muted">anch ${item.ancho} cm | larg ${item.largo} cm</small></p>
+  <p class="font-weight-bold" style="margin-left: auto;">ANTICIPO: ${item.anticipo} $MXN</p>
+</div>
+<div class="row ml-1" style="display: flex; justify-content: space-between; align-items: center;">
+  <p class="card-text" style="margin-right: auto;"><small class="text-muted">Pedido efectuado el: ${item.fechaPedido}</small></p>
+        <span class='text-white badge rounded-pill badge-notification bg-success' style="margin-left: auto;">${item.estatusPedido}</span>
+  </div>
+        
+        <a href="#" class="btn btn-warning text-white">Ver Producto</a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+//   content+=" <div class='row mb-3'><div class='col-sm-12'><div class='card'><div class='card-body'><h5 class='card-title'>"+item.nombreProducto+"</h5>" ;
+// content+="<p class='card-text'>anticipo "+item.anticipo+" | cantidad "+item.cantidad+" | precio "+item.precioTotal+" | "+item.fechaPedido+"</p></div>"
+// content+="</div></div></div>"
  })
 $( "#pedidos" ).html(content)
 }
