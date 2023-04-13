@@ -55,8 +55,45 @@ $(document).ready(function(){
   $( "#btnCancelar" ).click(function() {
   $('#exampleModal').modal('hide')
 });
+//AGREGAR MAS VALIDACIONES
 $( "#btnAceptar" ).click(function() {
-  $('#exampleModal').modal('hide')
+  if($('#txtUsuario').val()=="" || $("#txtCorreo").val()=="" || $("#txtCalle").val()=="" || $("#txtCiudad").val()=="" || $("#txtEstado").val()=="" || $("#txtNumeroTelefono").val()=="" || $("#txtPais").val()=="" || $("#txtNumeroTarjeta").val()=="" || $("#txtTarjetaHabiente").val()=="" || $("#txtCvv").val()==""){
+    let content="";
+    content='<div class="alert alert-danger" role="alert">¡Rellena todos los campos!</div>'
+    $( "#errorCampos" ).html( content ); 
+    if($('#txtUsuario').val()==""){
+      $("#txtUsuario").css("border-color","red");
+    }  
+    if($('#txtCorreo').val()==""){
+      $("#txtCorreo").css("border-color","red");
+    }  
+    if($('#txtCalle').val()==""){
+      $("#txtCalle").css("border-color","red");
+
+    }
+    if($('#txtCiudad').val()==""){
+      $("#txtCiudad").css("border-color","red");
+    }
+    if($('#txtEstado').val()==""){
+      $("#txtEstado").css("border-color","red");
+    }
+    if($('#txtNumeroTelefono').val()==""){     
+      $("#txtNumeroTelefono").css("border-color","red");
+    }
+    if($('#txtPais').val()==""){
+      $("#txtPais").css("border-color","red");
+    }
+    if($('#txtNumeroTarjeta').val()==""){
+      $("#txtNumeroTarjeta").css("border-color","red");
+    }
+    if($('#txtTarjetaHabiente').val()==""){
+      $("#txtTarjetaHabiente").css("border-color","red");
+    }
+    if($('#txtCvv').val()==""){
+      $("#txtCvv").css("border-color","red");
+    }
+
+  }else{
  let content=""
 
   fetch('/realizarPedido', {
@@ -79,8 +116,11 @@ $("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
   //   content =  "<span class='text-white badge rounded-pill badge-notification bg-danger'>0</span> articulos añadidos",
   // $("#btnComprar").remove()
   // $(popUpCarrito).attr('data-content', content)
-  });  
+  }); 
+} 
 });
+
+
 
   $('#smartwizard').smartWizard({
                     selected: 0,

@@ -129,22 +129,23 @@
                 <p><strong>Pagina 1/4</strong></p>
                 <div class="row"> <div class="col-md-6"> 
                   
-                  <input type="text" class="form-control" value="{{current_user.name}}" placeholder="Usuario" required> </div> 
+                  <input type="text" class="form-control" value="{{current_user.name}}" id="txtUsuario" placeholder="Usuario" required> </div> 
                   <div class="col-md-6"> 
                  
-                  <input type="text" class="form-control" value="{{current_user.email}}"placeholder="Correo" required> </div> </div> 
+                  <input type="text" class="form-control" value="{{current_user.email}}" id="txtCorreo" placeholder="Correo" required> </div> </div> 
                   <div class="row mt-3">  </div> </div> <div id="step-2"> 
                     <p><strong>Pagina 2/4</strong></p>
                     <div class="row">
-                      <div class="col-md-6"> <input type="text" class="form-control" placeholder="Calle" required> </div> <div class="col-md-6"> <input type="text" class="form-control" placeholder="Ciudad" required> </div> </div> <div class="row mt-3"> <div class="col-md-6"> <input type="text" class="form-control" placeholder="Estado" required> </div> <div class="col-md-6"> <input type="text" class="form-control" placeholder="Pais" required> </div> </div> </div> 
+                      <div class="col-md-6"> <input type="text" class="form-control" id="txtCalle" placeholder="Calle" required> </div> <div class="col-md-6"> <input type="text" class="form-control" id="txtCiudad" placeholder="Ciudad" required> </div> </div> <div class="row mt-3"> <div class="col-md-6"> <input type="text" class="form-control" id="txtEstado" placeholder="Estado" required> </div> <div class="col-md-6"> <input type="text" class="form-control" id="txtPais" placeholder="Pais" required> </div> </div> </div> 
                       <div id="step-3" class="">
                         <p><strong>Pagina 3/4</strong></p>
 
                         <div class="row"> <div class="col-md-6"> 
-                          <input type="text" class="form-control" placeholder="Numero de tarjeta" required> 
+                          <input type="text" class="form-control" id="txtNumeroTarjeta" placeholder="Numero de tarjeta" required> 
                         </div> <div class="col-md-6"> 
-                          <input type="text" class="form-control" placeholder="Nombre de tarjeta habiente" required>
-                         </div> </div> <div class="row mt-3"> <div class="col-md-6"> <input type="text" class="form-control" placeholder="CVV" required> </div> <div class="col-md-6"> <input type="text" class="form-control" placeholder="Numero de telefono" required> </div> </div> </div> 
+                          <input type="text" class="form-control" id="txtTarjetaHabiente" placeholder="Nombre de tarjeta habiente" required>
+                         </div> </div>
+                          <div class="row mt-3"> <div class="col-md-6"> <input type="text" class="form-control" id="txtCvv" placeholder="CVV" required> </div> <div class="col-md-6"> <input type="text" class="form-control" id="txtNumeroTelefono" placeholder="Numero de telefono" required> </div> </div> </div> 
                   <div id="step-4" class=""> 
                     <p><strong>Pagina 4/4</strong></p>
                     <div class="row"> <div class="col-md-12"> 
@@ -154,6 +155,7 @@
                         <div class="col text-center">
                           <p>Para realizar la compra debe realizar el pago del anticipo que es el 50% del total de la compra.</p>
                           <div id="detalleCompra"></div>
+<div id="errorCampos"></div>
                           <button id="btnAceptar"class="btn btn-success text-white regular-button mr-4"> Aceptar </button>
                           <button id="btnCancelar"class="btn btn-danger text-white regular-button"> Cancelar </button>
                         </div>	
