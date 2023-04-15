@@ -16,7 +16,100 @@
     <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet" type="text/css" /> 
     <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_dots.min.css" rel="stylesheet" type="text/css" /> 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"></script> 
+  <!-- Incluimos los estilos de Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- Agregamos estilos personalizados -->
+  <style>
+    .fade-in {
+      animation: fadeIn 1s ease-in;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    .fade-in-left {
+      animation: fadeInLeft 1s ease-in;
+    }
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    .fade-in-right {
+      animation: fadeInRight 1s ease-in;
+    }
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
   
+    .carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #000;
+  background-size: 50%;
+  background-position: center;
+  width: 30px;
+  height: 30px;
+  transition: all 0.2s ease-in-out;
+}
+
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+  background-color: #131212b9;
+}
+
+.carousel-control-prev-icon:hover::before,
+.carousel-control-next-icon:hover::before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+  width: 100%;
+  transition: all 0.2s ease-in-out;
+}
+
+.carousel-control-prev-icon {
+  transform: rotate(180deg);
+  margin-right: 10px;
+}
+
+.carousel-control-next-icon {
+  margin-left: 10px;
+}
+
+.card-img {
+  max-height: 400px;
+}
+.carousel-card {
+  background-color: #4abaa5;
+}
+
+.carousel-indicators li {
+background-color: black;
+color: white;
+}
+.navbar-nav .nav-link:hover {
+  color: rgb(0, 83, 25) !important;
+}
+
+
+  </style>
   </head>
 <body style="background-color: #e9ecef;">
       <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #4abaa5;">
@@ -33,6 +126,21 @@
                     ¿Quienes Somos?
                </a>
             </li>
+            <li class="nav-item active">
+              <a href="{{ url_for('informativo.sobre_nosotros') }}" class="nav-link font-weight-bold text-white">
+                  Sobre nosotros
+             </a>
+          </li>
+          <li class="nav-item active">
+            <a href="{{ url_for('informativo.contacto') }}" class="nav-link font-weight-bold text-white">
+                Contacto
+           </a>
+        </li>
+        <li class="nav-item active">
+          <a href="{{ url_for('informativo.carrousel') }}" class="nav-link font-weight-bold text-white">
+              Carrousel de productos
+         </a>
+      </li>
             {% endif %}
 
             {% if current_user.is_authenticated %}  
@@ -195,6 +303,65 @@
 })
 </script>
 
+<footer class="text-center text-lg-start" style="background-color: #b3b6b9";>
+  <div class="container p-4">
+    <div class="row">
+      <div class="col-lg-6 col-md-12 mb-4 mb-md-0 animate__fadeIn">
+        <h5 class="text-uppercase">InflabExpress</h5>
+        <p class="text-justify">Nuestra empresa se dedica a la fabricación y venta de inflables de alta calidad para todo tipo de eventos y ocasiones. Ofrecemos una amplia variedad de diseños y tamaños para satisfacer las necesidades de nuestros clientes y garantizar su satisfacción. Además, brindamos un servicio excepcional y un equipo de profesionales capacitados para ayudar a nuestros clientes a elegir la mejor opción para sus eventos.</p>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase">Enlaces</h5>
+        <ul class="list-unstyled mb-0">
+          <li>
+            <a href="#!" class="text-dark animate__bounce">Inicio</a>
+          </li>
+          <li>
+            <a href="{{ url_for('informativo.sobre_nosotros') }}" class="text-dark animate__bounce">Sobre nosotros</a>
+          </li>
+          <li>
+            <a href="#!" class="text-dark animate__bounce">Servicios</a>
+          </li>
+          <li>
+            <a href="{{ url_for('informativo.contacto') }}" class="text-dark animate__bounce">Contacto</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase mb-0">Redes sociales</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!" class="text-dark">Facebook</a>
+          </li>
+          <li>
+            <a href="#!" class="text-dark">Twitter</a>
+          </li>
+          <li>
+            <a href="#!" class="text-dark">Instagram</a>
+          </li>
+          <li>
+            <a href="#!" class="text-dark">LinkedIn</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </footer>
+
+  <div class="text-center p-3" style="background-color: rgba(113, 218, 127, 0.2);">
+    © 2023 InflabExpress. Todos los derechos reservados.
+  </div>
+  <!-- Incluimos los scripts de Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </body>
 
 </html>

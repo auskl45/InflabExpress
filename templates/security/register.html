@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="card rounded-3 text-black fade-in">
+
 <div class="container mt-4 h-100 mb-2">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-xl-6">
@@ -12,8 +14,9 @@
       <div class="text-center">
         <img src="../../static/img/logo.png"
           style="width: 185px;" alt="logo">
-        <h4 class="mt-1 mb-3 pb-1">InflabExpress Member </h4>
-        <h6 class="mt-1 mb-2 pb-1">Crear Cuenta </h6>
+          <h4 class="mt-1 mb-3 pb-1 fade-in-left">InflabExpress Member </h4>
+          <h6 class="mt-1 mb-2 pb-1 fade-in-right">Crear Cuenta </h6>
+          
 
       </div>
 
@@ -54,6 +57,8 @@
       </div>
     </div>
 </div>
+</div>
+{% endblock %}
 <!--
 <div class="column is-4 is-offset-4">
     <h3 class="title">Registro</h3>
@@ -89,4 +94,4 @@
     </div>
 </div>
 -->
-{% endblock %}
+

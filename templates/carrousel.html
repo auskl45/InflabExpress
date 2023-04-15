@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="carouselExampleIndicators" class="carousel slide mb-4 fade-in" data-ride="carousel">
+    <ol class="carousel-indicators">
+        {% for producto in informativo %}
+        <li data-target="#carouselExampleIndicators" data-slide-to="{{ loop.index0 }}" {% if loop.first %} class="active" {% endif %}></li>
+        {% endfor %}
+    </ol>
+    <div class="carousel-inner">
+        {% for producto in informativo %}
+        <div class="carousel-item {% if loop.first %} active {% endif %}">
+            <div class="card mb-3 carousel-card">
+                <div class="row no-gutters">
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ producto.nombre }}</h2>
+                            <p class="card-text">{{ producto.descripcion }}</p>
+                            <p class="card-text"><strong>Stock:</strong> {{ producto.stock }}</p>
+                            <p class="card-text"><strong>Altura:</strong> {{ producto.altura }}</p>
+                            <p class="card-text"><strong>Ancho:</strong> {{ producto.ancho }}</p>
+                            <p class="card-text"><strong>Largo:</strong> {{ producto.largo }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-5 d-flex align-items-center">
+                        <img class="card-img w-100" src="../static/img/InflabAcuatico.jpg" alt="Imagen de {{ producto.nombre }}">
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    
+</div>
+<div class="container fade-in" >
+    <div class="row">
+        {% for producto in informativo %}
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow" data-aos="flip-left">
+                <img class="card-img w-100" src="../static/img/InflabAcuatico.jpg" alt="Imagen de {{ producto.nombre }}">
+                <div class="card-body">
+                    <h3 class="card-title">{{ producto.nombre }}</h3>
+                    <p class="card-text">{{ producto.descripcion }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a type="button" class="btn text-white btn-warning ml-3" href="{{ url_for('informativo.login') }}"><i class="bi bi-cart-dash bi-fw"></i> Añadir</a>
+
+                            <a type="button" class="btn btn-outline-secondary ver-detalles" href="{{ url_for('informativo.ver_detalle', id=producto.id) }}">Ver detalles</a>
+                        </div>
+                        
+                          
+                        
+                        <small class="text-muted">{{ producto.precio }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

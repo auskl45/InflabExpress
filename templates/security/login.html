@@ -8,10 +8,10 @@
             <div class="col-lg-6">
               <div class="card-body p-md-5 mx-md-4">
 
-                <div class="text-center">
+                <div class="text-center fade-in">
                   <img src="../../static/img/logo.png"
                     style="width: 185px;" alt="logo">
-                  <h4 class="mt-1 mb-5 pb-1">InflabExpress Member </h4>
+                  <h4 class="mt-1 mb-5 pb-1 fade-in-left">InflabExpress Member </h4>
                 </div>
         
         {% with messages = get_flashed_messages() %}
@@ -22,24 +22,24 @@
         {% endif %}
         {% endwith %}
 
-                <form method="POST" action="/security/login">
+                <form method="POST" action="/security/login" class="animated fade-in">
                   <p >Introduce tus datos</p>
 
-                  <div class="form-outline mb-2">
+                  <div class="form-outline mb-2 fade-in-right">
                     <input type="email" name="email" class="mtb-2 form-control"autofocus=""
                       placeholder="correo electronico" />
                   </div>
 
-                  <div class="form-outline mb-4">
+                  <div class="form-outline mb-4 fade-in-right">
                     <input type="password" placeholder="contraseña" name="password" class="form-control" autofocus=""/>
                   </div>
 
-                  <div class="text-center pt-1 mb-5 pb-1">
+                  <div class="text-center pt-1 mb-5 pb-1 fade-in">
                     <button class="btn text-white btn-block mb-3" style="background-color: #4abaa5;">Inicio Sesion</button>
                   </div>
                   {% if not current_user.is_authenticated %}
 
-                  <div class="d-flex align-items-center justify-content-center pb-4">
+                  <div class="d-flex align-items-center justify-content-center pb-4 fade-in">
                     <p class="mb-0 mr-2">¿No tienes una cuenta?</p>
                     <a  class="btn btn-outline-warning" href="{{ url_for('auth.register') }}">Crear</a>
                   </div>
@@ -50,7 +50,7 @@
 
               </div>
             </div>
-            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+            <div class="col-lg-6 d-flex align-items-center gradient-custom-2 animated fade-in">
               <div class="text-white px-3 py-4 p-md-5 mx-md-4">
                 <h4 class="mb-4">Accede a nuestros productos</h4>
                 <p class="small mb-0">Con la cuenta Surf Member para clientes podras ver nuestros productos y comprarlos en linea
