@@ -3,6 +3,8 @@ from Auth.routes import auth
 from Pedidos.routes import pedidos
 from Productos.routes import productos
 from informativo.routes import informativo
+from MateriaPrima.routes import materiaPrima
+from Proveedor.routes import proveedor
 from flask_security import current_user,Security, SQLAlchemyUserDatastore
 import os
 from model import User, Role,db
@@ -27,6 +29,8 @@ app.register_blueprint(auth)
 app.register_blueprint(productos)
 app.register_blueprint(pedidos)
 app.register_blueprint(informativo)
+app.register_blueprint(materiaPrima)
+app.register_blueprint(proveedor)
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # #     #Generamos la clave aleatoria de sesión Flask para crear una cookie con la inf. de la sesión

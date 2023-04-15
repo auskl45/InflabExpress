@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Editar provedor</h1>
+  <form method="POST">
+    {{ form.csrf_token }}
+    <div class="form-group">
+        {{ form.nombre.label(class="control-label") }}
+        {{ form.nombre(class="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ form.direccion.label(class="control-label") }}
+        {{ form.direccion(class="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ form.telefono.label(class="control-label") }}
+        {{ form.telefono(class="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ form.email.label(class="control-label") }}
+        {{ form.email(class="form-control") }}
+      </div>
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+  </form>
+{% endblock %}
