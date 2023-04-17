@@ -132,11 +132,12 @@ def modificarProducto():
 
     return render_template('admin/modificar.html',form=create_forms)
 
-@productos.route("/eliminarProducto")
+@productos.route("/eliminarProducto",methods=['GET','POST'])
 def eliminarProducto():
         id=request.args.get('id')
         product= db.session.query(Producto).filter(Producto.id==id).first()
-        db.session.delete(product)
+        product.estatus=0
+        db.session.add(product)
         db.session.commit()
         logger.info('Producto eliminado por '+current_user.name+' con id '+str(current_user.id))
 

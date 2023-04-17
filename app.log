@@ -39,51 +39,23 @@
 2023-04-06 10:26:55,392 - INFO - Producto agregado porJorge Antonio con id 1
 2023-04-06 14:56:06,168 - INFO - Producto modificado por Jorge Antonio con id 1
 2023-04-06 14:56:19,929 - INFO - Producto modificado por Jorge Antonio con id 1
-2023-04-08 00:45:31,387 - ERROR - You tried to access the file 'image' in the request.files dictionary but it does not exist. The mimetype for the request is 'application/x-www-form-urlencoded' instead of 'multipart/form-data' which means that no file contents were transmitted. To fix this error you should provide enctype="multipart/form-data" in your form.
-
-The browser instead transmitted some file names. This was submitted: 'escritorio.jpg' Error al agregar producto por Jonathan con id 1
-2023-04-08 01:04:01,260 - ERROR - You tried to access the file 'image' in the request.files dictionary but it does not exist. The mimetype for the request is 'application/x-www-form-urlencoded' instead of 'multipart/form-data' which means that no file contents were transmitted. To fix this error you should provide enctype="multipart/form-data" in your form.
-
-The browser instead transmitted some file names. This was submitted: 'escritorio.jpg' Error al agregar producto por Jonathan con id 1
-2023-04-08 01:04:27,164 - INFO - Producto agregado porJonathan con id 1
-2023-04-08 01:22:57,743 - ERROR - You tried to access the file 'image' in the request.files dictionary but it does not exist. The mimetype for the request is 'application/x-www-form-urlencoded' instead of 'multipart/form-data' which means that no file contents were transmitted. To fix this error you should provide enctype="multipart/form-data" in your form.
-
-The browser instead transmitted some file names. This was submitted: ''
-2023-04-08 01:30:50,658 - ERROR - 'NoneType' object has no attribute 'id'
-2023-04-08 01:32:48,155 - ERROR - 'NoneType' object has no attribute 'id'
-2023-04-08 01:33:11,169 - ERROR - 'NoneType' object has no attribute 'id'
-2023-04-08 01:35:28,434 - ERROR - 'NoneType' object has no attribute 'id'
-2023-04-08 01:36:02,885 - ERROR - 'NoneType' object has no attribute 'id'
-2023-04-08 01:37:03,778 - INFO - Producto modificado por Jonathan con id 1
-2023-04-08 01:37:20,542 - INFO - Producto modificado por Jonathan con id 1
-2023-04-08 01:38:19,237 - ERROR - 'AnonymousUser' object has no attribute 'name'
-2023-04-08 01:39:28,918 - INFO - Producto modificado por Jonathan con id 1
-2023-04-08 01:39:42,043 - INFO - Producto modificado por Jonathan con id 1
-2023-04-08 01:42:29,969 - ERROR - object of type 'FileStorage' has no len()
-2023-04-08 01:42:50,634 - ERROR - object of type 'FileStorage' has no len()
-2023-04-08 01:44:28,369 - ERROR - 'AnonymousUser' object has no attribute 'name'
-2023-04-08 01:44:49,661 - INFO - Producto modificado por Jonathan con id 1
-2023-04-08 01:45:48,771 - INFO - Producto modificado por Jonathan con id 1
-2023-04-08 01:47:15,156 - INFO - Producto modificado por Jonathan con id 1
-2023-04-08 01:47:27,025 - INFO - Producto modificado por Jonathan con id 1
-2023-04-08 01:48:35,308 - INFO - Producto modificado por Jonathan con id 1
-2023-04-08 01:49:58,913 - INFO - Producto modificado por Jonathan con id 1
-2023-04-08 01:50:27,041 - INFO - Producto modificado por Jonathan con id 1
-2023-04-08 01:52:19,753 - INFO - Producto modificado por Jonathan con id 1
-2023-04-08 01:54:01,600 - INFO - Producto modificado por Jonathan con id 1
-2023-04-08 01:54:18,819 - INFO - Producto modificado por Jonathan con id 1
-2023-04-08 10:15:07,952 - INFO - Producto modificado por Jonathan con id 1
-2023-04-08 10:23:38,673 - INFO - Producto agregado porJonathan con id 1
-2023-04-08 10:24:47,025 - ERROR - (pymysql.err.OperationalError) (2013, 'Lost connection to MySQL server during query ([WinError 10053] Se ha anulado una conexión establecida por el software en su equipo host)')
-[SQL: UPDATE producto SET image=%(image)s WHERE producto.id = %(producto_id)s]
-[parameters: {'image': b'iVBORw0KGgoAAAANSUhEUgAABg4AAAQ4CAYAAADRkScxAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUADxOUSURBVHgB7P3ZsyRJlt6JHVUz8+UuseZW ... (1317251 characters truncated) ... IwDgAAAAAAAAAAAAAAAAAAEAGxgEAAAAAAAAAAAAAAAAAADIwDgAAAAAAAAAAAAAAAAAAkIFxAAAAAAAAAAAAAAAAAACADIwDAAAAAAAAAAAAAAAAAABk/mdf+YIoVoBRxAAAAABJRU5ErkJggg==', 'producto_id': 2}]
-(Background on this error at: https://sqlalche.me/e/20/e3q8)
-2023-04-08 10:25:15,158 - INFO - Producto modificado por Jonathan con id 1
-2023-04-08 10:26:30,019 - INFO - Producto modificado por Jonathan con id 1
-2023-04-08 10:26:50,437 - INFO - Producto modificado por Jonathan con id 1
-2023-04-08 10:29:21,997 - INFO - Producto agregado porJonathan con id 1
-2023-04-08 10:29:41,476 - INFO - Producto modificado por Jonathan con id 1
-2023-04-08 10:29:53,280 - INFO - Producto modificado por Jonathan con id 1
-2023-04-08 10:31:04,149 - INFO - Producto modificado por Jonathan con id 1
-2023-04-08 10:32:03,436 - INFO - Producto agregado porJonathan con id 1
-2023-04-08 10:32:27,513 - INFO - Producto eliminado por Jonathan con id 1
+2023-04-08 14:22:03,975 - WARNING - El usuario y/o la contraseÃ±a son incorrectos
+2023-04-08 14:22:09,191 - WARNING - El usuario y/o la contraseÃ±a son incorrectos
+2023-04-12 19:08:30,401 - INFO - Producto modificado por Jonathan con id 1
+2023-04-12 20:23:43,214 - ERROR - 'AnonymousUser' object has no attribute 'name'
+2023-04-12 20:24:12,896 - ERROR - 'AnonymousUser' object has no attribute 'name'
+2023-04-12 20:25:05,539 - INFO - Producto modificado por Jonathan con id 1
+2023-04-12 20:29:00,980 - INFO - Producto modificado por Jonathan con id 1
+2023-04-15 11:58:03,995 - INFO - Producto eliminado por Jonathan con id 1
+2023-04-15 12:02:17,840 - WARNING - El usuario y/o la contraseña son incorrectos
+2023-04-15 12:03:05,523 - WARNING - El correo electrónico ya existe
+2023-04-15 12:15:33,943 - INFO - Producto modificado por Jonathan con id 1
+2023-04-15 12:15:47,748 - INFO - Producto modificado por Jonathan con id 1
+2023-04-15 12:16:08,085 - INFO - Producto modificado por Jonathan con id 1
+2023-04-15 12:16:46,131 - INFO - Producto modificado por Jonathan con id 1
+2023-04-16 13:49:44,373 - INFO - Producto agregado porJonathan con id 1
+2023-04-16 13:50:24,076 - INFO - Producto eliminado por Jonathan con id 1
+2023-04-16 15:00:31,255 - INFO - Producto agregado porJonathan con id 1
+2023-04-16 15:01:33,030 - INFO - Producto agregado porJonathan con id 1
+2023-04-16 15:01:57,257 - INFO - Producto eliminado por Jonathan con id 1
+2023-04-16 15:02:01,725 - INFO - Producto eliminado por Jonathan con id 1

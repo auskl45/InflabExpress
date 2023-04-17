@@ -45,7 +45,6 @@ def agregar_materia_prima():
 
         materia_prima = MateriaPrima(
             nombre=form.nombre.data,
-            color=form.color.data,
             costo=form.costo.data,
             stock=form.stock.data,
             tipoMateriaPrima_id=request.form['tipoMateriaPrima_id'],
@@ -73,7 +72,6 @@ def modificarMateriaPrima():
         materiaPrima = db.session.query(MateriaPrima).filter(MateriaPrima.id == id).first()
         form.id.data = materiaPrima.id
         form.nombre.data = materiaPrima.nombre
-        form.color.data = materiaPrima.color
         form.costo.data = materiaPrima.costo
         form.stock.data = materiaPrima.stock
         form.tipoMateriaPrima_id.data = materiaPrima.tipoMateriaPrima_id
@@ -83,7 +81,6 @@ def modificarMateriaPrima():
         id = form.id.data
         materiaPrima = db.session.query(MateriaPrima).filter(MateriaPrima.id == id).first()
         materiaPrima.nombre = form.nombre.data
-        materiaPrima.color = form.color.data
         materiaPrima.costo = form.costo.data
         materiaPrima.stock = form.stock.data
         materiaPrima.tipoMateriaPrima_id = request.form['tipoMateriaPrima_id']

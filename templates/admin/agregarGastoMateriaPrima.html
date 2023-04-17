@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Agregar Materia Prima</h1>
+  <h1>Agregar Gasto de Materia Prima</h1>
   <form method="POST" action="/agregarGastoMateria">
     {{ form.csrf_token }}
     <div class="form-group">
@@ -22,11 +22,11 @@
             </div>
     <div class="form-group">
         <label for="cantidadGastada">Cantidad gastada de materia</label>
-        <input type="number" class="form-control" id="cantidadGastada" name="cantidadGastada" required>
+        <input type="number" min=0,oninput="validity.valid||(value='');" step="any" class="form-control" id="cantidadGastada" name="cantidadGastada" required>
     </div>
     <div class="form-group">
       {{ form.total.label(class="control-label") }}
-      {{ form.total(class="form-control") }}
+      {{ form.total(min=0,oninput="validity.valid||(value='');",step="any",type="number",class="form-control") }}
     </div>
     <button type="submit" class="btn btn-primary">Agregar</button>
   </form>

@@ -15,10 +15,6 @@
    <div class="row">
        <form name="sent" action="/agregarProducto" id="form1" method="POST"  enctype="multipart/form-data">
         <div class="form-group">
-            {{ form.id.label(class="control-label")}}
-            {{ form.id(class="form-control") }}
-          </div>
-        <div class="form-group">
             {{ form.nombre.label(class="control-label") }}
             {{ form.nombre(class="form-control") }}
           </div>
@@ -28,27 +24,27 @@
             </div>
             <div class="form-group">
                 {{ form.stock.label(class="control-label") }}
-                {{ form.stock(class="form-control") }}
+                {{ form.stock(min=0,oninput="validity.valid||(value='');",class="form-control") }}
             </div>
             <div class="form-group">
                 {{ form.altura.label(class="control-label") }}
-                {{ form.altura(class="form-control") }}
+                {{ form.altura(min=0,oninput="validity.valid||(value='');",step="any",type="number",class="form-control") }}
             </div>
             <div class="form-group">
                 {{ form.ancho.label(class="control-label") }}
-                {{ form.ancho(class="form-control") }}
+                {{ form.ancho(min=0,oninput="validity.valid||(value='');",step="any",type="number",class="form-control") }}
             </div>
             <div class="form-group">
                 {{ form.largo.label(class="control-label") }}
-                {{ form.largo(class="form-control") }}
+                {{ form.largo(min=0,oninput="validity.valid||(value='');",step="any",type="number",class="form-control") }}
             </div>
             <div class="form-group">
                 {{ form.subtotal.label(class="control-label") }}
-                {{ form.subtotal(class="form-control") }}
+                {{ form.subtotal(min=0,oninput="validity.valid||(value='');",step="any",type="number",class="form-control") }}
             </div>
             <div class="form-group">
                 {{ form.total.label(class="control-label") }}
-                {{ form.total(class="form-control") }}
+                {{ form.total(min=0,oninput="validity.valid||(value='');",step="any",type="number",class="form-control") }}
             </div>
         <div class="control-group">
             <div class="form-group col-xs-12">

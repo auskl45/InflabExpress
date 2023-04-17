@@ -41,6 +41,7 @@ def agregarGastoMateria():
     inflablesAll= Producto.query.all()
     materiaPrimaAll= MateriaPrima.query.all()
     if request.method == 'POST' and form.validate():
+        print(request.form)
 
         gasto_materia_prima = GastoMateriaPrima(
             cantidad=request.form['cantidadGastada'],

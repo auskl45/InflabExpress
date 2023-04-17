@@ -2,6 +2,9 @@ from flask import Flask, render_template
 #from Alumnos.routes import alumnos
 #from Maestros.routes import maestros
 from Auth.routes import auth
+from Pedidos.routes import pedidos
+from Envios.routes import envios
+from Finanzas.routes import finanzas
 from Productos.routes import productos
 from MateriaPrima.routes import materiaPrima
 from GastoMateriaPrima.routes import gastoMateriaPrima
@@ -31,6 +34,9 @@ app.register_blueprint(auth)
 app.register_blueprint(productos)
 app.register_blueprint(materiaPrima)
 app.register_blueprint(gastoMateriaPrima)
+app.register_blueprint(pedidos)
+app.register_blueprint(envios)
+app.register_blueprint(finanzas)
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # #     #Generamos la clave aleatoria de sesión Flask para crear una cookie con la inf. de la sesión
