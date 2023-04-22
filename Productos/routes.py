@@ -3,7 +3,7 @@ from flask_security import login_required, current_user
 from flask_security.decorators import roles_required
 import logging
 from forms import UseForm,ProductoForm
-from model import Producto,db
+from model import Producto,db, Pedido
 from flask import request
 from flask import redirect, render_template, url_for
 import base64
@@ -24,10 +24,11 @@ productos = Blueprint('productos',__name__)
 def profile():
     create_forms=UseForm(request.form)
     productosAll=Producto.query.all()
+    for p in productosAll:
+        print(p.nombre)
     if current_user.roles[0].name=="admin":
         admin=True
         return render_template('admin/listaProductos.html',form=create_forms,productos=productosAll,admin=admin)
-
     else:
         admin=False
         return render_template('user/profile.html',name=current_user.name,admin=admin)    

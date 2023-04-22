@@ -7,5 +7,5 @@ class Config(object):
 
 class DevelopmentConfig(Config):
     DEBUG=True
-    SQLALCHEMY_DATABASE_URI="mysql+pymysql://root:@127.0.0.1:3306/BDInflabExpress"
+    SQLALCHEMY_DATABASE_URI='mysql+pymysql://root:2005@localhost/inflabexpress'
     SQLALCHEMY_TRACK_MODIFICATIONS=False

@@ -1,11 +1,11 @@
 from decouple import config
+
 import pymysql
 
 def get_connection():
-    return pymysql.connect(
-        host=config('MYSQL_HOST'),
-        database=config('MYSQL_DB'),
-        user=config('MYSQL_USER'),
-        password=config('MYSQL_PASSWORD')
-
-    )
+    connection = pymysql.connect(host='localhost',
+                                 user='root',
+                                 password='2005',
+                                 database='inflabexpress',
+                                 charset='utf8mb4')
+    return connection

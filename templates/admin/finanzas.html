@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+{% block content%}
+{%from "_macros.html" import render_field%}
+
+<div class="grey-bg container-fluid">
+  <section id="minimal-statistics">
+    <div class="row">
+      <div class="col-12 mt-3 mb-1">
+        <h4 class="text-uppercase">Información de InflabExpress</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-3 col-sm-6 col-12"> 
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="align-self-center">
+                  <i class="bi bi-box-seam primary font-large-2 float-left"></i>
+                </div>
+                <div class="media-body text-right">
+                  <h3>{{finanzas[0][0]}}</h3>
+                  <span>Total Pedidos</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="align-self-center">
+                  <i class="bi bi-box-seam warning font-large-2 float-left"></i>
+                </div>
+                <div class="media-body text-right">
+                  <h3>{{finanzas[0][6]}}</h3>
+                  <span>Envios Completados</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="align-self-center">
+                  <i class="bi bi-box-seam success font-large-2 float-left"></i>
+                </div>
+                <div class="media-body text-right">
+                  <h3>{{finanzas[0][1]}}</h3>
+                  <span>Pedidos Completados</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="align-self-center">
+                  <i class="bi bi-x-circle-fill danger font-large-2 float-left"></i>
+                </div>
+                <div class="media-body text-right">
+                  <h3>{{finanzas[0][2]}}</h3>
+                  <span>435 Pedidos Cancelados</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="col-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="media-body text-left">
+                  <h3 class="success">{{finanzas[0][3]}}</h3>
+                  <span>Clientes</span>
+                </div>
+                <div class="align-self-center">
+                  <i class="icon-user success font-large-2 float-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+   
+    </div>
+  </section>
+  
+  <section id="stats-subtitle">
+  <div class="row">
+    <div class="col-12 mt-3 mb-1">
+      <h4 class="text-uppercase">Finanzas y Estadisticas</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-6 col-md-12">
+      <div class="card overflow-hidden">
+        <div class="card-content">
+          <div class="card-body cleartfix">
+            <div class="media align-items-stretch">
+              <div class="align-self-center">
+                <i class="bi bi-box-seam primary font-large-2 mr-2"></i>
+              </div>
+              <div class="media-body">
+                <h4>Efectivo Pedidos</h4>
+                <span>Monthly blog posts</span>
+              </div>
+              <div class="align-self-center">
+                <h1>{{finanzas[0][4]}}</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-6 col-md-12">
+      <div class="card">
+        <div class="card-content">
+          <div class="card-body cleartfix">
+            <div class="media align-items-stretch">
+              <div class="align-self-center">
+                <i class="bi bi-cash warning font-large-2 mr-2"></i>
+              </div>
+              <div class="media-body">
+                <h4>Utilidad</h4>
+                <span>Es la utilidad de la empresa</span>
+              </div>
+              <div class="align-self-center"> 
+                <h1>84,695</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-6 col-md-12">
+      <div class="card">
+        <div class="card-content">
+          <div class="card-body cleartfix">
+            <div class="media align-items-stretch">
+              <div class="align-self-center">
+                <h1 class="mr-2">${{finanzas[0][5]}}</h1>
+              </div>
+              <div class="media-body">
+                <h4>Total Ventas</h4>
+                <span>Monthly Sales Amount</span>
+              </div>
+              <div class="align-self-center">
+                <i class="bi bi-cash success font-large-2"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-6 col-md-12">
+      <div class="card">
+        <div class="card-content">
+          <div class="card-body cleartfix">
+            <div class="media align-items-stretch">
+              <div class="align-self-center">
+                <h1 class="mr-2">$36,000.00</h1>
+              </div>
+              <div class="media-body">
+                <h4>Total Cost</h4>
+                <span>Monthly Cost</span>
+              </div>
+              <div class="align-self-center">
+                <i class="icon-wallet danger font-large-2"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+{% endblock %}
